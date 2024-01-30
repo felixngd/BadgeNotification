@@ -12,3 +12,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e45ea82f538b4161bf31e4ffe124c29, type: 3}
   m_Name: QuestData
   m_EditorClassIdentifier: 
+  dailyQuests:
+  - id: 0
+    isCompleted: 0
+    questType: 0
+  - id: 1
+    isCompleted: 1
+    questType: 0
+  - id: 2
+    isCompleted: 1
+    questType: 0
+  - id: 3
+    isCompleted: 1
+    questType: 0
+  - id: 4
+    isCompleted: 0
+    questType: 0
+  - id: 5
+    isCompleted: 0
+    questType: 0
+  - id: 6
+    isCompleted: 0
+    questType: 0
+  - id: 7
+    isCompleted: 1
+    questType: 0
+  - id: 8
+    isCompleted: 1
+    questType: 0
+  - id: 9
+    isCompleted: 0
+    questType: 0
+  seasonQuests:
+  - id: 0
+    isCompleted: 0
+    questType: 1
+  - id: 1
+    isCompleted: 0
+    questType: 1
+  - id: 2
+    isCompleted: 0
+    questType: 1
+  - id: 3
+    isCompleted: 1
+    questType: 1
+  - id: 4
+    isCompleted: 0
+    questType: 1
+  - id: 5
+    isCompleted: 0
+    questType: 1
+  - id: 6
+    isCompleted: 1
+    questType: 1
+  - id: 7
+    isCompleted: 1
+    questType: 1
+  - id: 8
+    isCompleted: 1
+    questType: 1
+  - id: 9
+    isCompleted: 1
+    questType: 1

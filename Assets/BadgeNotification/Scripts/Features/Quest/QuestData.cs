@@ -27,6 +27,9 @@ namespace Voidex.Badge.Sample
                     isCompleted = Random.Range(0, 2) == 1, questType = Quest.QuestType.Season
                 });
             }
+            
+            //save
+            EditorUtility.SetDirty(this);
         }
     }
     [System.Serializable]
