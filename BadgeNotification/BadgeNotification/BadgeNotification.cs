@@ -1,5 +1,4 @@
-using System;
-using UnityEngine;
+using System.Text;
 using Voidex.Trie;
 
 namespace Voidex.Badge.Runtime
@@ -55,14 +54,21 @@ namespace Voidex.Badge.Runtime
             if (node.Value != null)
                 node.Value.value += value;
             var paths = key.Split(Const.SEPARATOR);
+            var fullPath = new StringBuilder(50);
             foreach (var path in paths)
             {
+                if (fullPath.Length > 0)
+                {
+                    fullPath.Append(Const.SEPARATOR);
+                }
+                fullPath.Append(path);
+                
                 if (!node.HasChild(path))
                 {
                     var child = new TrieNode<BadgeData>(path);
                     child.Value = new BadgeData
                     {
-                        key = path,
+                        key = fullPath.ToString(),
                         value = 0
                     };
                     node.SetChild(child);
@@ -79,8 +85,6 @@ namespace Voidex.Badge.Runtime
                     {
                         value = node.Value.value, key = node.Value.key
                     });
-                    
-                    Debug.Log($"Add badge {node.Value.key} with value {node.Value.value}");
                 }
             }
         }
