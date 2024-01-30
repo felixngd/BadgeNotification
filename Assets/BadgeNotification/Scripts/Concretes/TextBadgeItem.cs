@@ -12,7 +12,8 @@ namespace Voidex.Badge.Sample
         private void OnEnable()
         {
             if(ApplicationContext.BadgeNotification == null) return;
-            var value = ApplicationContext.BadgeNotification.GetBadgeValue(badgeNode.GetValue(null).ToString());
+            var key = badgeNode.GetValue(null).ToString();
+            var value = ApplicationContext.BadgeNotification.GetBadgeValue(key);
             text.text = value.ToString();
         }
 

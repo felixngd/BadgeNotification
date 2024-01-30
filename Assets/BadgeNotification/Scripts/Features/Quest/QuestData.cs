@@ -19,12 +19,12 @@ namespace Voidex.Badge.Sample
                 dailyQuests.Add(new Quest
                 {
                     id = i,
-                    isCompleted = Random.Range(0, 2) == 1
+                    isCompleted = Random.Range(0, 2) == 1, questType = Quest.QuestType.Daily
                 });
                 seasonQuests.Add(new Quest
                 {
                     id = i,
-                    isCompleted = Random.Range(0, 2) == 1
+                    isCompleted = Random.Range(0, 2) == 1, questType = Quest.QuestType.Season
                 });
             }
         }
@@ -34,6 +34,13 @@ namespace Voidex.Badge.Sample
     {
         public int id;
         public bool isCompleted;
+        public QuestType questType;
+        
+        public enum QuestType
+        {
+            Daily,
+            Season
+        }
     }
     
     [CustomEditor(typeof(QuestData))]

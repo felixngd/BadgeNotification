@@ -31,8 +31,8 @@ public class BadgesTest
         //load graph using AssetDatabase
         var badgeGraph = AssetDatabase.LoadAssetAtPath<BadgeGraph>(AssetDatabase.GUIDToAssetPath(graph[0]));
         badgeNotification.Initialize(badgeGraph);
-        badgeNotification.AddBadge("Root|Mail|SecreteMail", 1);
-        var badge = badgeNotification.GetBadge("Root|Mail|SecreteMail");
+        badgeNotification.AddBadge("Root|Mails|Rewarded", 1);
+        var badge = badgeNotification.GetBadge("Root|Mails|Rewarded");
         Assert.NotNull(badge);
         Assert.AreEqual(1, badge.value);
     }
@@ -46,8 +46,8 @@ public class BadgesTest
         //load graph using AssetDatabase
         var badgeGraph = AssetDatabase.LoadAssetAtPath<BadgeGraph>(AssetDatabase.GUIDToAssetPath(graph[0]));
         badgeNotification.Initialize(badgeGraph);
-        badgeNotification.AddBadge("Root|Character|StepUp", 5);
-        var badge = badgeNotification.GetBadge("Root|Character|StepUp");
+        badgeNotification.AddBadge("Root|Characters|Upgrade", 5);
+        var badge = badgeNotification.GetBadge("Root|Characters|Upgrade");
         Assert.NotNull(badge);
         Assert.AreEqual(5, badge.value);
     }
@@ -61,9 +61,9 @@ public class BadgesTest
         //load graph using AssetDatabase
         var badgeGraph = AssetDatabase.LoadAssetAtPath<BadgeGraph>(AssetDatabase.GUIDToAssetPath(graph[0]));
         badgeNotification.Initialize(badgeGraph);
-        badgeNotification.AddBadge("Root|Mail|SecreteMail", 1);
-        badgeNotification.UpdateBadge("Root|Mail|SecreteMail", -1);
-        var badge = badgeNotification.GetBadge("Root|Mail|SecreteMail");
+        badgeNotification.AddBadge("Root|Mails|Rewarded", 1);
+        badgeNotification.UpdateBadge("Root|Mails|Rewarded", -1);
+        var badge = badgeNotification.GetBadge("Root|Mails|Rewarded");
         Assert.AreEqual(0, badge.value);
     }
     
@@ -76,10 +76,26 @@ public class BadgesTest
         //load graph using AssetDatabase
         var badgeGraph = AssetDatabase.LoadAssetAtPath<BadgeGraph>(AssetDatabase.GUIDToAssetPath(graph[0]));
         badgeNotification.Initialize(badgeGraph);
-        badgeNotification.AddBadge("Root|Mail|SecreteMail", 1);
-        badgeNotification.UpdateBadge("Root|Mail|SecreteMail", 1);
-        var badge = badgeNotification.GetBadge("Root|Mail|SecreteMail");
+        badgeNotification.AddBadge("Root|Mails|Rewarded", 1);
+        badgeNotification.UpdateBadge("Root|Mails|Rewarded", 1);
+        var badge = badgeNotification.GetBadge("Root|Mails|Rewarded");
         Assert.AreEqual(2, badge.value);
+    }
+    
+    [Test]
+    public void Test_Update_Badge_03()
+    {
+        BadgeNotification badgeNotification = new BadgeNotification();
+        //find graph using AssetDatabase
+        var graph = AssetDatabase.FindAssets("t:BadgeGraph");
+        //load graph using AssetDatabase
+        var badgeGraph = AssetDatabase.LoadAssetAtPath<BadgeGraph>(AssetDatabase.GUIDToAssetPath(graph[0]));
+        badgeNotification.Initialize(badgeGraph);
+        
+        badgeNotification.AddBadge("Root|Quests|Daily|0", 1);
+        badgeNotification.UpdateBadge("Root|Quests|Daily|0", -1);
+        var badge = badgeNotification.GetBadge("Root|Quests|Daily|0");
+        Assert.AreEqual(0, badge.value);
     }
 
     [Test]
@@ -92,21 +108,21 @@ public class BadgesTest
         var badgeGraph = AssetDatabase.LoadAssetAtPath<BadgeGraph>(AssetDatabase.GUIDToAssetPath(graph[0]));
         badgeNotification.Initialize(badgeGraph);
         
-        badgeNotification.AddBadge("Root|Mail|SecreteMail", 1);
-        Assert.AreEqual(1, badgeNotification.GetBadgeValue("Root|Mail|SecreteMail"));
+        badgeNotification.AddBadge("Root|Mails|Rewarded", 1);
+        Assert.AreEqual(1, badgeNotification.GetBadgeValue("Root|Mails|Rewarded"));
         
-        badgeNotification.UpdateBadge("Root|Mail|SecreteMail", -11);
-        var badge = badgeNotification.GetBadgeValue("Root|Mail|SecreteMail");
+        badgeNotification.UpdateBadge("Root|Mails|Rewarded", -11);
+        var badge = badgeNotification.GetBadgeValue("Root|Mails|Rewarded");
         Assert.AreEqual(0, badge);
         
-        badgeNotification.UpdateBadge("Root|Mail|SecreteMail", 4);
-        badge = badgeNotification.GetBadgeValue("Root|Mail|SecreteMail");
+        badgeNotification.UpdateBadge("Root|Mails|System", 4);
+        badge = badgeNotification.GetBadgeValue("Root|Mails|System");
         Assert.AreEqual(4, badge);
-        var badge2 = badgeNotification.GetBadge("Root|Mail|RewardedMail");
+        var badge2 = badgeNotification.GetBadge("Root|Mails|Rewarded");
         Assert.AreEqual(0, badge2.value);
-        badgeNotification.UpdateBadge("Root|Mail|RewardedMail", 1);
+        badgeNotification.UpdateBadge("Root|Mails|Rewarded", 1);
         
-        badge = badgeNotification.GetBadgeValue("Root|Mail");
+        badge = badgeNotification.GetBadgeValue("Root|Mails");
         Assert.AreEqual(5, badge);
     }
     
@@ -120,12 +136,12 @@ public class BadgesTest
         var badgeGraph = AssetDatabase.LoadAssetAtPath<BadgeGraph>(AssetDatabase.GUIDToAssetPath(graph[0]));
         badgeNotification.Initialize(badgeGraph);
         
-        badgeNotification.UpdateBadge("Root|Mail|SystemMail", 1);
-        Assert.AreEqual(1, badgeNotification.GetBadgeValue("Root|Mail|SystemMail"));
-        badgeNotification.UpdateBadge("Root|Mail|RewardedMail", 4);
-        Assert.AreEqual(4, badgeNotification.GetBadgeValue("Root|Mail|RewardedMail"));
+        badgeNotification.UpdateBadge("Root|Mails|System", 1);
+        Assert.AreEqual(1, badgeNotification.GetBadgeValue("Root|Mails|System"));
+        badgeNotification.UpdateBadge("Root|Mails|Rewarded", 4);
+        Assert.AreEqual(4, badgeNotification.GetBadgeValue("Root|Mails|Rewarded"));
         
-        var badge = badgeNotification.GetBadgeValue("Root|Mail");
+        var badge = badgeNotification.GetBadgeValue("Root|Mails");
         Assert.AreEqual(5, badge);
     }
 }

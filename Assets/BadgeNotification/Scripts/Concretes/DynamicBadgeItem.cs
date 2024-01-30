@@ -6,16 +6,21 @@ namespace Voidex.Badge.Sample
 {
     public class DynamicBadgeItem : MonoBehaviour
     {
-        [SerializeField] protected BadgeNode badgeNode;
         private IDisposable _disposable;
         public string key;
         
         public TMPro.TextMeshProUGUI text;
 
-        protected virtual void OnDestroy()
+        private void OnEnable()
+        {
+            if(string.IsNullOrEmpty(key)) return;
+            var value = ApplicationContext.BadgeNotification.GetBadgeValue(key);
+            gameObject.SetActive(value > 0);
+        }
+        protected void OnDestroy()
         {
             //unsubscribe from the badge node
-            _disposable.Dispose();
+            _disposable?.Dispose();
         }
 
         private void OnBadgeChanged(BadgeChangedMessage message)
@@ -25,21 +30,24 @@ namespace Voidex.Badge.Sample
                 if(message.value > 1){
                     text.text = message.value.ToString();
                     text.gameObject.SetActive(true);
+                    gameObject.SetActive(true);
                 }else if(message.value == 1){
                     text.gameObject.SetActive(false);
+                    gameObject.SetActive(true);
                 }
                 else
                 {
                     gameObject.SetActive(false);
                 }
             }
+            
         }
         
-        public void SetIdAndSubscribe(string key)
+        public void Subscribe(string value)
         {
             //subscribe to the badge node
-            this.key = key;
-            _disposable = GlobalMessaging<BadgeChangedMessage>.Subscribe(key, OnBadgeChanged);
+            this.key = value;
+            _disposable = GlobalMessaging<BadgeChangedMessage>.Subscribe(this.key, OnBadgeChanged);
         }
     }
 }

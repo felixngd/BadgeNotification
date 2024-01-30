@@ -33,20 +33,21 @@ namespace Voidex.Badge.Sample
             {
                 var questObject = Instantiate(questPrefab, dailyQuestParent);
                 questObject.GetComponent<QuestView>().Initialize(quest);
-                var badgeItem = questObject.AddComponent<DynamicBadgeItem>();
-                var key = $"{dailyQuestBadgeNode.GetValue(null)}_{quest.id}";
-                badgeItem.SetIdAndSubscribe(key);
-                ApplicationContext.BadgeNotification.AddBadge(key, quest.isCompleted ? 0 : 1);
+
+                var badgeItem = questObject.GetComponentInChildren<DynamicBadgeItem>();
+                var key = $"{dailyQuestBadgeNode.GetValue(null)}|{quest.id}";
+                badgeItem.Subscribe(key);
+                ApplicationContext.BadgeNotification.AddBadge(key, quest.isCompleted ? 1 : 0);
             }
             
             foreach (var quest in _seasonQuests)
             {
                 var questObject = Instantiate(questPrefab, seasonQuestParent);
                 questObject.GetComponent<QuestView>().Initialize(quest);
-                var badgeItem = questObject.AddComponent<DynamicBadgeItem>();
-                var key = $"{seasonQuestBadgeNode.GetValue(null)}_{quest.id}";
-                badgeItem.SetIdAndSubscribe(key);
-                ApplicationContext.BadgeNotification.AddBadge(key, quest.isCompleted ? 0 : 1);
+                var badgeItem = questObject.GetComponentInChildren<DynamicBadgeItem>();
+                var key = $"{seasonQuestBadgeNode.GetValue(null)}|{quest.id}";
+                badgeItem.Subscribe(key);
+                ApplicationContext.BadgeNotification.AddBadge(key, quest.isCompleted ? 1 : 0);
             }
         }
     }

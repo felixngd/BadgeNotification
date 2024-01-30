@@ -1,5 +1,6 @@
 using System;
 using MessagePipe;
+using UnityEngine;
 using Voidex.Badge.Runtime;
 using Voidex.Badge.Runtime.Interfaces;
 

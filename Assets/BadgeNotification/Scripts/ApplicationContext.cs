@@ -44,6 +44,22 @@ namespace Voidex.Badge.Sample
             IPubSub<BadgeChangedMessage> pubSub = new MessagePipeMessaging();
             BadgeMessaging.Initialize(pubSub);
         }
+        
+        #if ODIN_INSPECTOR
+        [Button]
+#endif
+        public void GetBadgeValue(string key)
+        {
+            var exists = BadgeNotification.GetBadge(key);
+            if (exists == null)
+            {
+                Debug.Log($"Badge not found: {key}");
+                return;
+            }
+
+            var badge = BadgeNotification.GetBadgeValue(key);
+            Debug.Log($"Badge value: {badge}");
+        }
     }
 }
 
