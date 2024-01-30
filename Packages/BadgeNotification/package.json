@@ -1,0 +1,17 @@
+{
+  "name": "com.voidex.badgenotification",
+  "displayName": "Badge Notification",
+  "version": "0.2.0",
+  "unity": "2022.3",
+  "license": "MIT",
+  "dependencies": {
+    "com.cysharp.unitask": "2.5.1",
+    "com.github.siccity.xnode": "1.8.0"
+  },
+  "author": {
+    "name": "Nguyen Danh Dat",
+    "url": "https://github.com/felixngd"
+  },
+  "type": "library",
+  "description": "Red badge notification system for games in Unity"
+}

@@ -1,0 +1,18 @@
+{
+    "name": "Voidex.BadgeNotification.Runtime",
+    "rootNamespace": "Voidex.BadgeNotification",
+    "references": [
+        "XNode",
+        "Voidex.Trie",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
