@@ -1,5 +1,5 @@
 {
-    "name": "RedDot.Tests",
+    "name": "BadgeNotification.Tests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",

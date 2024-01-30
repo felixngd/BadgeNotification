@@ -1,4 +1,5 @@
 using System.Text;
+using UnityEngine;
 using Voidex.Trie;
 
 namespace Voidex.Badge.Runtime
@@ -33,7 +34,7 @@ namespace Voidex.Badge.Runtime
                     value = 0
                 };
                 _trieMap.Add(key, value);
-                
+
                 GlobalMessaging<BadgeChangedMessage>.Publish(new BadgeChangedMessage
                 {
                     value = value.value, key = value.key
@@ -61,8 +62,9 @@ namespace Voidex.Badge.Runtime
                 {
                     fullPath.Append(Const.SEPARATOR);
                 }
+
                 fullPath.Append(path);
-                
+
                 if (!node.HasChild(path))
                 {
                     var child = new TrieNode<BadgeData>(path);
@@ -75,18 +77,20 @@ namespace Voidex.Badge.Runtime
                 }
 
                 node = node.GetChild(path);
-                if (node.Value != null)
+
+                node.Value.value += value;
+                _trieMap.Add(node.Value.key, node.Value);
+                Debug.Log($"&&& {node.Value.key} with value {node.Value.value}");
+
+                //notify ui
+                GlobalMessaging<BadgeChangedMessage>.Publish(new BadgeChangedMessage
                 {
-                    node.Value.value += value;
-                    _trieMap.Add(node.Value.key, node.Value);
-                    
-                    //notify ui
-                    GlobalMessaging<BadgeChangedMessage>.Publish(new BadgeChangedMessage
-                    {
-                        value = node.Value.value, key = node.Value.key
-                    });
-                }
+                    value = node.Value.value, key = node.Value.key
+                });
             }
+            
+            var badge = _trieMap.ValueBy(key);
+            Debug.Log($"Added badge {badge.key} with value {badge.value}");
         }
 
         /// <summary>
