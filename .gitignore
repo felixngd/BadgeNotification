@@ -71,3 +71,5 @@ crashlytics-build.properties
 /Documentation/
 /_site/
 /Assets/DemoDevelopment/obj/xdoc/cache/
+/Assets/Plugins/Sirenix/*
+/Assets/Plugins/Sirenix.meta

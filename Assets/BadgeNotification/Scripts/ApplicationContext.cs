@@ -1,5 +1,7 @@
 using System;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#endif
 using UnityEngine;
 using Voidex.Badge.Runtime;
 using Voidex.Badge.Runtime.Interfaces;
@@ -9,7 +11,7 @@ namespace Voidex.Badge.Sample
     public class ApplicationContext : MonoBehaviour
     {
         [SerializeField] private BadgeGraph badgeGraph;
-        
+
         public static Runtime.BadgeNotification BadgeNotification;
 
         private void Awake()
@@ -21,7 +23,7 @@ namespace Voidex.Badge.Sample
         {
             BadgeNotification = new BadgeNotification();
             BadgeNotification.Initialize(badgeGraph);
-            
+
             //suppose here is where the condition is met
             //mail received and not read
             // BadgeNotification.UpdateBadge("Root|Mail|SystemMail", 6);
@@ -44,8 +46,8 @@ namespace Voidex.Badge.Sample
             IPubSub<BadgeChangedMessage> pubSub = new MessagePipeMessaging();
             BadgeMessaging.Initialize(pubSub);
         }
-        
-        #if ODIN_INSPECTOR
+
+#if ODIN_INSPECTOR
         [Button]
 #endif
         public void GetBadgeValue(string key)
@@ -62,4 +64,3 @@ namespace Voidex.Badge.Sample
         }
     }
 }
-

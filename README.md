@@ -6,13 +6,16 @@ Dot Badge Notifications, also known as red dot notifications, are small icons, t
 This package allows you to create dot badge notifications for all games developed on Unity. It offers a flexible, intuitive, and easy-to-use system; this package provides a visual Badge Node tool for you to design the most complex red dot notification systems.
 
 ![](./imgs/sample.gif)
+## Test Status
+
+Most of my test cases have passed, ensuring the reliability and robustness of my package. I am continuously working on improving and expanding my test coverage.
 ## Installation
 
 ### Dependencies
 
-- UniTask 2.5.1 or newer.
-- XNode 1.8.0 or newer.
-- MessagePipe 1.7.4 or newer (you may replace it with another Pub/Sub library).
+- [UniTask](https://github.com/Cysharp/UniTask) 2.5.1 or newer.
+- [XNode](https://github.com/Siccity/xNode) 1.8.0 or newer.
+- [MessagePipe](https://github.com/Cysharp/MessagePipe) 1.7.4 or newer (you may replace it with another Pub/Sub library).
 
 ### Installation Methods
 

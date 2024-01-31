@@ -183,7 +183,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Rewarded
-  description: 
+  description: Mail contains rewards that can be collected
 --- !u!114 &-6312623635550658987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: System
-  description: 
+  description: Mail sent from the system.
 --- !u!114 &-2366902049938655761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,7 +607,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Slot6
-  description: Slot 4
+  description: Slot 6
 --- !u!114 &3645507789693404381
 MonoBehaviour:
   m_ObjectHideFlags: 0
