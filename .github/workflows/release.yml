@@ -1,0 +1,20 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - 'master'
+  workflow_dispatch: {}
+jobs:
+  release:
+    name: Setup, Build, Publish, and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: release
+        run: |
+          set -euxo pipefail
+          version=$(jq -r .version  Packages/BadgeNotification/package.json)
+          bash ./deploy.sh --semver $version
