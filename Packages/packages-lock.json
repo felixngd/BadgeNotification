@@ -30,6 +30,13 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
+    "com.cysharp.zstring": {
+      "version": "https://github.com/Cysharp/ZString.git?path=src/ZString.Unity/Assets/Scripts/ZString",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "a67902abaf80e7b376980d2326c07094bd4776fb"
+    },
     "com.github-glitchenzo.nugetforunity": {
       "version": "4.0.2",
       "depth": 0,

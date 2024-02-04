@@ -6,7 +6,8 @@
         "UnityEditor.TestRunner",
         "Voidex.BadgeNotification.Runtime",
         "XNode",
-        "Voidex.BadgeNotification.Sample"
+        "Voidex.BadgeNotification.Sample",
+        "Voidex.Trie"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

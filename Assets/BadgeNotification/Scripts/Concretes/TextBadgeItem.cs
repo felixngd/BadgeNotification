@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Voidex.Badge.Runtime;
+using Voidex.Badge.Sample.Features.User;
 
 namespace Voidex.Badge.Sample
 {
@@ -11,20 +12,19 @@ namespace Voidex.Badge.Sample
 
         private void OnEnable()
         {
-            if(ApplicationContext.BadgeNotification == null) return;
             var key = badgeNode.GetValue(null).ToString();
-            var value = ApplicationContext.BadgeNotification.GetBadgeValue(key);
+            var value = GlobalData.BadgeNotification.GetBadgeValue(key);
             text.text = value.ToString();
+            gameObject.SetActive(value > 0);
         }
 
         protected override void OnBadgeChanged(BadgeChangedMessage message)
         {
             if (message.key.Equals(badgeNode.GetValue(null).ToString()))
             {
+                gameObject.SetActive(message.value > 0);
                 text.text = message.value.ToString();
             }
-            
-            gameObject.SetActive(message.value > 0);
         }
     }
 }

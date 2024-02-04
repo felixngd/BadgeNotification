@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Voidex.Badge.Runtime;
+using Voidex.Badge.Sample.Features.User;
 
 namespace Voidex.Badge.Sample
 {
@@ -37,7 +38,7 @@ namespace Voidex.Badge.Sample
                 var badgeItem = questObject.GetComponentInChildren<DynamicBadgeItem>();
                 var key = $"{dailyQuestBadgeNode.GetValue(null)}|{quest.id}";
                 badgeItem.Subscribe(key);
-                ApplicationContext.BadgeNotification.AddBadge(key, quest.isCompleted ? 1 : 0);
+                GlobalData.BadgeNotification.AddBadge(key, quest.isCompleted ? 1 : 0);
             }
             
             foreach (var quest in _seasonQuests)
@@ -47,7 +48,7 @@ namespace Voidex.Badge.Sample
                 var badgeItem = questObject.GetComponentInChildren<DynamicBadgeItem>();
                 var key = $"{seasonQuestBadgeNode.GetValue(null)}|{quest.id}";
                 badgeItem.Subscribe(key);
-                ApplicationContext.BadgeNotification.AddBadge(key, quest.isCompleted ? 1 : 0);
+                GlobalData.BadgeNotification.AddBadge(key, quest.isCompleted ? 1 : 0);
             }
         }
     }

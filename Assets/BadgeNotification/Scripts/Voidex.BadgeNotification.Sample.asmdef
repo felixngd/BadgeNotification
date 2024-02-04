@@ -6,7 +6,9 @@
         "MessagePipe",
         "UniTask",
         "XNode",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "ObservableCollections",
+        "ZString"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

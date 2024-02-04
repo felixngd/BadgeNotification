@@ -8,8 +8,8 @@ namespace Voidex.Badge.Sample
 {
     public class MessagePipeMessaging : IPubSub<BadgeChangedMessage>
     {
-        private readonly IPublisher<string, BadgeChangedMessage> _publisher;
-        private readonly ISubscriber<string, BadgeChangedMessage> _subscriber;
+        public readonly IPublisher<string, BadgeChangedMessage> _publisher;
+        public readonly ISubscriber<string, BadgeChangedMessage> _subscriber;
         public MessagePipeMessaging()
         {
             var builder = new BuiltinContainerBuilder();

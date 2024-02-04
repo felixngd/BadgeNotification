@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
+using Cysharp.Text;
 
 namespace Voidex.Trie
 {
@@ -56,7 +56,7 @@ namespace Voidex.Trie
                      Traverse
                      (
                          GetTrieNode(keyPrefix),
-                         new StringBuilder(keyPrefix),
+                         ZString.CreateStringBuilder(),
                          (_, v) => v
                      ))
             {
@@ -81,7 +81,7 @@ namespace Voidex.Trie
             var r = Traverse
             (
                 node,
-                new StringBuilder(keyPrefix),
+                ZString.CreateStringBuilder(),
                 (kBuilder, v) => kBuilder.ToString()
             );
 
@@ -104,12 +104,22 @@ namespace Voidex.Trie
         /// </summary>
         public IEnumerable<KeyValuePair<string, TValue>> KeyValuePairsBy(string keyPrefix)
         {
-            //if prefix is not Root
+            var node = GetTrieNode(keyPrefix);
+            var buffer = ZString.CreateStringBuilder();
+            if (!string.IsNullOrEmpty(node.Word))
+            {
+                if (buffer.Length > 0)
+                {
+                    buffer.Append(Const.SEPARATOR);
+                }
+
+                buffer.Append(node.Word);
+            }
             foreach (var kvPair in
                      Traverse
                      (
-                         GetTrieNode(keyPrefix),
-                         new StringBuilder(keyPrefix),
+                         node,
+                         buffer,
                          (kBuilder, v) => new KeyValuePair<string, TValue>(kBuilder.ToString(), v)
                      ))
             {
@@ -122,7 +132,7 @@ namespace Voidex.Trie
         /// </summary>
         public IEnumerable<KeyValuePair<string, TValue>> KeyValuePairs()
         {
-            return KeyValuePairsBy("");
+            return KeyValuePairsBy(string.Empty);
         }
 
         /// <summary>
@@ -220,7 +230,7 @@ namespace Voidex.Trie
         public IEnumerable<KeyValuePair<string, TValue>> GetLongestKeyValuePairs()
         {
             var longestKeyValuePairs = new List<KeyValuePair<string, TValue>>();
-            var buffer = new StringBuilder();
+            var buffer = ZString.CreateStringBuilder();
             var length = new Wrapper<int>(0);
             GetLongestKeyValuePairs(rootTrieNode, longestKeyValuePairs, buffer, length);
             return longestKeyValuePairs;
@@ -232,7 +242,7 @@ namespace Voidex.Trie
         public IEnumerable<KeyValuePair<string, TValue>> GetShortestKeyValuePairs()
         {
             var shortestKeyValuePairs = new List<KeyValuePair<string, TValue>>();
-            var buffer = new StringBuilder();
+            var buffer = ZString.CreateStringBuilder();
             var length = new Wrapper<int>(int.MaxValue);
             GetShortestKeyValuePairs(rootTrieNode, shortestKeyValuePairs, buffer, length);
             return shortestKeyValuePairs;
@@ -263,14 +273,13 @@ namespace Voidex.Trie
         /// DFS traversal starting from given TrieNode and yield.
         /// </summary>
         private IEnumerable<TResult> Traverse<TResult>(TrieNode<TValue> trieNode,
-            StringBuilder buffer, Func<StringBuilder, TValue, TResult> transform)
+            Utf16ValueStringBuilder buffer, Func<Utf16ValueStringBuilder, TValue, TResult> transform)
         {
             if (trieNode == null)
             {
                 yield break;
             }
-
-
+            
             if (trieNode.HasValue())
             {
                 yield return transform(buffer, trieNode.Value);
@@ -297,13 +306,12 @@ namespace Voidex.Trie
                 }
 
                 // Reset the buffer to the state before this child
-                buffer.Length = lengthBeforeChild;
+                buffer.Remove(lengthBeforeChild, buffer.Length - lengthBeforeChild);
             }
         }
 
-
         private void GetLongestKeyValuePairs(TrieNode<TValue> trieNode,
-            ICollection<KeyValuePair<string, TValue>> longestKeyValuePairs, StringBuilder buffer, Wrapper<int> length)
+            ICollection<KeyValuePair<string, TValue>> longestKeyValuePairs, Utf16ValueStringBuilder buffer, Wrapper<int> length)
         {
             if (trieNode.HasValue())
             {
@@ -324,12 +332,12 @@ namespace Voidex.Trie
                 var bufferLengthBeforeAppend = buffer.Length;
                 buffer.Append(child.Word);
                 GetLongestKeyValuePairs(child, longestKeyValuePairs, buffer, length);
-                buffer.Length = bufferLengthBeforeAppend;
+                buffer.Remove(bufferLengthBeforeAppend, buffer.Length - bufferLengthBeforeAppend);
             }
         }
 
         private void GetShortestKeyValuePairs(TrieNode<TValue> trieNode,
-            ICollection<KeyValuePair<string, TValue>> shortestKeyValuePairs, StringBuilder buffer, Wrapper<int> length)
+            ICollection<KeyValuePair<string, TValue>> shortestKeyValuePairs, Utf16ValueStringBuilder buffer, Wrapper<int> length)
         {
             if (trieNode.HasValue())
             {
@@ -350,7 +358,7 @@ namespace Voidex.Trie
                 int bufferLengthBeforeAppend = buffer.Length;
                 buffer.Append(child.Word);
                 GetShortestKeyValuePairs(child, shortestKeyValuePairs, buffer, length);
-                buffer.Length = bufferLengthBeforeAppend;
+                buffer.Remove(bufferLengthBeforeAppend, buffer.Length - bufferLengthBeforeAppend);
             }
         }
 

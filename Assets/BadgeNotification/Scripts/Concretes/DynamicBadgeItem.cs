@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Voidex.Badge.Runtime;
+using Voidex.Badge.Sample.Features.User;
 
 namespace Voidex.Badge.Sample
 {
@@ -14,7 +15,7 @@ namespace Voidex.Badge.Sample
         private void OnEnable()
         {
             if(string.IsNullOrEmpty(key)) return;
-            var value = ApplicationContext.BadgeNotification.GetBadgeValue(key);
+            var value = GlobalData.BadgeNotification.GetBadgeValue(key);
             gameObject.SetActive(value > 0);
         }
         protected void OnDestroy()
@@ -47,7 +48,8 @@ namespace Voidex.Badge.Sample
         {
             //subscribe to the badge node
             this.key = value;
-            _disposable = GlobalMessaging<BadgeChangedMessage>.Subscribe(this.key, OnBadgeChanged);
+            var messagePipe = BadgeMessaging.GetMessagingService<MessagePipeMessaging>();
+            _disposable = messagePipe.Subscribe(key, OnBadgeChanged, new ChangedValueFilter<BadgeChangedMessage>());
         }
     }
 }

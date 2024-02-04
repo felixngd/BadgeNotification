@@ -32,6 +32,6 @@ namespace Voidex.Badge.Runtime.Interfaces
     public interface IPubSub<TMessage>
     {
         void Publish(TMessage topic);
-        IDisposable Subscribe(string topic, Action<TMessage> callback);
+        IDisposable Subscribe(string key, Action<TMessage> callback);
     }
 }

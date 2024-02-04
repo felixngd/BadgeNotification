@@ -45,13 +45,44 @@ namespace Voidex.Trie
 
         internal TrieNodeBase GetChildInner(string word)
         {
-            TrieNodeBase trieNode;
-            _children.TryGetValue(word, out trieNode);
+            _children.TryGetValue(word, out var trieNode);
             return trieNode;
         }
 
         internal TrieNodeBase GetTrieNodeInner(string prefix)
         {
+            // TrieNodeBase trieNode = this;
+            // ReadOnlySpan<char> remaining = prefix.AsSpan();
+            //
+            // while (!remaining.IsEmpty)
+            // {
+            //     int separatorIndex = remaining.IndexOf(Const.SEPARATOR);
+            //     ReadOnlySpan<char> word;
+            //
+            //     if (separatorIndex == -1)
+            //     {
+            //         word = remaining;
+            //         remaining = ReadOnlySpan<char>.Empty;
+            //     }
+            //     else
+            //     {
+            //         word = remaining.Slice(0, separatorIndex);
+            //         remaining = remaining.Slice(separatorIndex + 1);
+            //     }
+            //
+            //     if (word.IsEmpty || word.IsWhiteSpace())
+            //     {
+            //         continue;
+            //     }
+            //     
+            //     trieNode = trieNode.GetChildInner(word.ToString());
+            //     if (trieNode == null)
+            //     {
+            //         break;
+            //     }
+            // }
+            //
+            // return trieNode;
             TrieNodeBase trieNode = this;
             string[] words = prefix.Split(Const.SEPARATOR);
 

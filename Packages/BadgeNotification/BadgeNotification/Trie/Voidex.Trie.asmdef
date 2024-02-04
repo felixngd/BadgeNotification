@@ -1,7 +1,9 @@
 {
     "name": "Voidex.Trie",
     "rootNamespace": "Voidex.Trie",
-    "references": [],
+    "references": [
+        "ZString"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Voidex.Badge.Sample.Features.User;
 
 namespace Voidex.Badge.Sample
 {
@@ -39,7 +38,7 @@ namespace Voidex.Badge.Sample
         {
             _quest.isCompleted = true;
             var key = GetBadgeKeyByQuest(_quest);
-            ApplicationContext.BadgeNotification.UpdateBadge(key, _quest.isCompleted ? 1 : 0);
+            GlobalData.BadgeNotification.UpdateBadge(key, _quest.isCompleted ? 1 : 0);
             questText.text = $"Quest {_quest.id} is completed, click to claim the reward";
             button.gameObject.SetActive(false);
         }
@@ -50,7 +49,7 @@ namespace Voidex.Badge.Sample
             if (_quest.isCompleted)
             {
                 var key = GetBadgeKeyByQuest(_quest);
-                ApplicationContext.BadgeNotification.UpdateBadge(key, -1);
+                GlobalData.BadgeNotification.UpdateBadge(key, -1);
                 questText.text = $"Quest {_quest.id} is completed and claimed the reward";
                 
                 Debug.Log("key: " + key);
@@ -64,11 +63,11 @@ namespace Voidex.Badge.Sample
             var key = string.Empty;
             if (quest.questType == Quest.QuestType.Daily)
             {
-                key = $"{BadgeConstant.Quests_Daily}|{quest.id}";
+                key = $"{BadgeConstant.QuestsDaily}|{quest.id}";
             }
             else if (quest.questType == Quest.QuestType.Season)
             {
-                key = $"{BadgeConstant.Quests_Season}|{quest.id}";
+                key = $"{BadgeConstant.QuestsSeason}|{quest.id}";
             }
             
             return key;

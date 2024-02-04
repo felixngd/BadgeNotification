@@ -1,4 +1,6 @@
+using Cysharp.Text;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Voidex.Trie;
 using XNode;
 
@@ -12,7 +14,8 @@ namespace Voidex.Badge.Runtime
         protected override void Init()
         {
             base.Init();
-            name = string.IsNullOrEmpty(key) ? DEFAULT_NAME : key;
+            // var p = GetInputValue<string>(FIELD);
+            // name = string.IsNullOrEmpty(key) ? DEFAULT_NAME : $"{p}{Const.SEPARATOR}{key}";
         }
 
         [Output] public string child;
@@ -25,13 +28,16 @@ namespace Voidex.Badge.Runtime
 
         private void OnValidate()
         {
-            name = string.IsNullOrEmpty(key) ? DEFAULT_NAME : key;
+            var p = GetInputValue<string>(FIELD);
+            name = string.IsNullOrEmpty(key) ? DEFAULT_NAME : ZString.Concat(p, Const.SEPARATOR, key);
+            //save this asset
+            UnityEditor.EditorUtility.SetDirty(this);
         }
 
         public override object GetValue(NodePort port)
         {
             var input = GetInputValue<string>(FIELD);
-            var value = $"{input}{Const.SEPARATOR}{key}";
+            var value = ZString.Concat(input, Const.SEPARATOR, key);
             return value;
         }
     }

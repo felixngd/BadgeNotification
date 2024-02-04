@@ -4,6 +4,7 @@
     "com.cysharp.csprojmodifier": "https://github.com/Cysharp/CsprojModifier.git?path=src/CsprojModifier/Assets/CsprojModifier",
     "com.cysharp.messagepipe": "1.7.4",
     "com.cysharp.unitask": "2.5.0",
+    "com.cysharp.zstring": "https://github.com/Cysharp/ZString.git?path=src/ZString.Unity/Assets/Scripts/ZString",
     "com.github-glitchenzo.nugetforunity": "4.0.2",
     "com.github.siccity.xnode": "https://github.com/felixngd/xNode.git",
     "com.tuyoogame.yooasset": "https://github.com/felixngd/YooAsset.git#2.1.0",

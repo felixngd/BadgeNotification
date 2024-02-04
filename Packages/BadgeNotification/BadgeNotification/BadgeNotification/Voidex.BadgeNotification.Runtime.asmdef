@@ -4,7 +4,8 @@
     "references": [
         "XNode",
         "Voidex.Trie",
-        "UniTask"
+        "UniTask",
+        "ZString"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

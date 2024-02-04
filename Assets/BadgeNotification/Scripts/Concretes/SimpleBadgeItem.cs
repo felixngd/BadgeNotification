@@ -1,5 +1,7 @@
 using System;
+using UnityEngine;
 using Voidex.Badge.Runtime;
+using Voidex.Badge.Sample.Features.User;
 
 namespace Voidex.Badge.Sample
 {
@@ -15,9 +17,9 @@ namespace Voidex.Badge.Sample
 
         private void OnEnable()
         {
-            if(ApplicationContext.BadgeNotification == null) return;
+            if(GlobalData.BadgeNotification == null) return;
             var key = badgeNode.GetValue(null).ToString();
-            var value = ApplicationContext.BadgeNotification.GetBadgeValue(key);
+            var value = GlobalData.BadgeNotification.GetBadgeValue(key);
             gameObject.SetActive(value > 0);
         }
     }

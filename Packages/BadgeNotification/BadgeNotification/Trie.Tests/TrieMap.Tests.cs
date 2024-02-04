@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
-using UnityEngine;
 using Voidex.Trie;
 
 public class TrieMapTests
@@ -34,7 +33,6 @@ public class TrieMapTests
         var enumerable = keys as string[] ?? keys.ToArray();
         foreach (var key in enumerable)
         {
-            Debug.Log(key);
             trie.Update(key, 0);
         }
 
@@ -122,11 +120,6 @@ public class TrieMapTests
         };
         foreach (var key in trie.Keys())
         {
-            Debug.Log(key);
-        }
-
-        foreach (var key in trie.Keys())
-        {
             Assert.IsTrue(keys.Contains(key));
         }
     }
@@ -152,11 +145,6 @@ public class TrieMapTests
             "mod4|mod43",
             "mod5"
         };
-        foreach (var key in trie0.Keys())
-        {
-            Debug.Log(key);
-        }
-
         foreach (var key in trie0.Keys())
         {
             Assert.IsTrue(keys.Contains(key));
@@ -251,14 +239,11 @@ public class TrieMapTests
         };
         var pairs = trie.KeyValuePairsBy("key1");
         var keyValuePairs = pairs as KeyValuePair<string, int>[] ?? pairs.ToArray();
-        for (int i = 0; i < keyValuePairs.Length; i++)
-        {
-            Debug.Log(keyValuePairs[i].Key);
-        }
         
         for (int i = 0; i < keyValuePairs.Length; i++)
         {
             var pair = keyValuePairs[i];
+            UnityEngine.Debug.Log(keyValuePairs[i].Key);
             Assert.IsTrue(keys.Contains(pair.Key) && pair.Value == i + 1);
         }
     }
@@ -276,7 +261,7 @@ public class TrieMapTests
         var pairs = trieO.KeyValuePairsBy("mod2").ToArray();
         for (int i = 0; i < pairs.Length; i++)
         {
-            Debug.Log(pairs[i].Key + " " + pairs[i].Value.Data);
+            UnityEngine.Debug.Log(pairs[i].Key + " " + pairs[i].Value.Data);
         }
         
         Assert.IsTrue(keys.Contains(pairs[0].Key) && pairs[0].Value.Data == 4);
@@ -439,10 +424,6 @@ public class TrieMapTests
         trie.Add("keya", 1337);
         var expected = new[] {new KeyValuePair<string, int>("key1", 1), new KeyValuePair<string, int>("key2", 5), new KeyValuePair<string, int>("keya", 1337)};
         var shortestKeyValuePairs = trie.GetShortestKeyValuePairs();
-        foreach (var keyValuePair in shortestKeyValuePairs)
-        {
-            Debug.Log(keyValuePair.Key);
-        }
 
         Assert.AreEqual(expected, shortestKeyValuePairs);
     }

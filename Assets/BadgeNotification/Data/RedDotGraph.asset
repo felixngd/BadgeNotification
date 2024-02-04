@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
-  m_Name: Slot2
+  m_Name: Root|Characters|0|Equip|Horse
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 504, y: -200}
+  position: {x: 984, y: -232}
   ports:
     keys:
     - child
@@ -42,8 +42,52 @@ MonoBehaviour:
       _dynamic: 0
   child: 
   parent: 
-  key: Slot2
-  description: Slot 2
+  key: Horse
+  description: 'Slot 2 '
+--- !u!114 &-8799523285818532100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1|UpC
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 520, y: 488}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: -8799523285818532100}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: -8799523285818532100}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: 4072242609809207074}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: UpC
+  description: upgrade character
 --- !u!114 &-8236840847292661072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,10 +98,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
-  m_Name: Slot5
+  m_Name: Root|Characters|0|Equip|Helmet
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 504, y: 328}
+  position: {x: 984, y: -40}
   ports:
     keys:
     - child
@@ -86,8 +130,8 @@ MonoBehaviour:
       _dynamic: 0
   child: 
   parent: 
-  key: Slot5
-  description: Slot 4
+  key: Helmet
+  description: 'Slot 5 '
 --- !u!114 &-7596400471911885973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,10 +142,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
-  m_Name: Quests
+  m_Name: Root|Quests
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -120, y: 392}
+  position: {x: -120, y: 408}
   ports:
     keys:
     - child
@@ -140,6 +184,50 @@ MonoBehaviour:
   description: 'Quest Tab
 
 '
+--- !u!114 &-7015918203952331749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1|Equip|Accessory
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1224, y: 1048}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: -7015918203952331749}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: -7015918203952331749}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -4929458922404199675}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Accessory
+  description: 'Slot 6 '
 --- !u!114 &-6832447709591613770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,10 +238,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
-  m_Name: Rewarded
+  m_Name: Root|Mails|Rewarded
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 152, y: -488}
+  position: {x: 168, y: -792}
   ports:
     keys:
     - child
@@ -194,10 +282,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
-  m_Name: Slot1
+  m_Name: Root|Characters|0|Equip|Sword
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 504, y: -376}
+  position: {x: 984, y: -408}
   ports:
     keys:
     - child
@@ -226,7 +314,7 @@ MonoBehaviour:
       _dynamic: 0
   child: 
   parent: 
-  key: Slot1
+  key: Sword
   description: Slot 1
 --- !u!114 &-6049535425829934984
 MonoBehaviour:
@@ -238,10 +326,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
-  m_Name: Slot4
+  m_Name: Root|Characters|0|Equip|Shield
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 504, y: 152}
+  position: {x: 1224, y: -232}
   ports:
     keys:
     - child
@@ -270,8 +358,52 @@ MonoBehaviour:
       _dynamic: 0
   child: 
   parent: 
-  key: Slot4
-  description: Slot 4
+  key: Shield
+  description: 'Slot 4 '
+--- !u!114 &-5537003956010357757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1|UpE|Horse
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 984, y: 344}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: -5537003956010357757}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: -5537003956010357757}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -3792707517680363646}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Horse
+  description: 'upgrade slot 2 '
 --- !u!114 &-5461323902105700548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,10 +414,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
-  m_Name: Upgrade
+  m_Name: Root|Characters|0|UpC
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 152, y: -104}
+  position: {x: 520, y: -296}
   ports:
     keys:
     - child
@@ -306,7 +438,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: child
-        node: {fileID: -2366902049938655761}
+        node: {fileID: 3098670686953821197}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -314,8 +446,132 @@ MonoBehaviour:
       _dynamic: 0
   child: 
   parent: 
-  key: Upgrade
-  description: upgrade button
+  key: UpC
+  description: upgrade character
+--- !u!114 &-4929458922404199675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1|Equip
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 520, y: 664}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: -4929458922404199675}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: parent
+        node: {fileID: 5819444988677964583}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: -746160238002899500}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: -699863836994143362}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: 2739318694873660566}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: 275067795487466167}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: -7015918203952331749}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: -4929458922404199675}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: 4072242609809207074}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Equip
+  description: equip slot
+--- !u!114 &-4917002976862279852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|0|UpE
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 520, y: -472}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: -4917002976862279852}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: parent
+        node: {fileID: 1052192352806680734}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: 3425864312601307168}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: 4426213743667143088}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: 1055383603654645561}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: 8826079458002394277}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: 4235325025039310286}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: -4917002976862279852}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: 3098670686953821197}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: UpE
+  description: 'upgrade equipment '
 --- !u!114 &-4189786059188831577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,10 +582,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
-  m_Name: Slot3
+  m_Name: Root|Characters|0|Equip|Armor
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 504, y: -24}
+  position: {x: 1224, y: -408}
   ports:
     keys:
     - child
@@ -358,8 +614,158 @@ MonoBehaviour:
       _dynamic: 0
   child: 
   parent: 
-  key: Slot3
-  description: Slot 3
+  key: Armor
+  description: 'Slot 3 '
+--- !u!114 &-4101783288927669013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1|UpE|Helmet
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1224, y: 344}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: -4101783288927669013}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: -4101783288927669013}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -3792707517680363646}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Helmet
+  description: "upgrade slot 5 \n"
+--- !u!114 &-3889857596434159229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1|UpE|Accessory
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1224, y: 520}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: -3889857596434159229}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: -3889857596434159229}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -3792707517680363646}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Accessory
+  description: "upgrade slot 6 \n"
+--- !u!114 &-3792707517680363646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1|UpE
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 520, y: 312}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: -3792707517680363646}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: parent
+        node: {fileID: 679276532883554331}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: -5537003956010357757}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: 4126997164756225721}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: -2036304610417832984}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: -4101783288927669013}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: -3889857596434159229}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: -3792707517680363646}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: 4072242609809207074}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: UpE
+  description: upgrade equipment
 --- !u!114 &-2522060201032199898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,10 +776,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
-  m_Name: System
+  m_Name: Root|Mails|System
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 152, y: -312}
+  position: {x: 168, y: -616}
   ports:
     keys:
     - child
@@ -403,7 +809,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: System
-  description: Mail sent from the system.
+  description: 'Mail sent from the system. '
 --- !u!114 &-2366902049938655761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,7 +820,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
-  m_Name: Characters
+  m_Name: Root|Characters
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: -120, y: -24}
@@ -429,10 +835,10 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: parent
-        node: {fileID: -5461323902105700548}
+        node: {fileID: 3098670686953821197}
         reroutePoints: []
       - fieldName: parent
-        node: {fileID: 3645507789693404381}
+        node: {fileID: 4072242609809207074}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -454,6 +860,52 @@ MonoBehaviour:
   parent: 
   key: Characters
   description: heroes tab
+--- !u!114 &-2036304610417832984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1|UpE|Shield
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1224, y: 168}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: -2036304610417832984}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: -2036304610417832984}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -3792707517680363646}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Shield
+  description: 'upgrade slot 4
+
+'
 --- !u!114 &-1848173650794261168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,10 +953,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
-  m_Name: Daily
+  m_Name: Root|Quests|Daily
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 152, y: 296}
+  position: {x: 152, y: 312}
   ports:
     keys:
     - child
@@ -535,6 +987,94 @@ MonoBehaviour:
   parent: 
   key: Daily
   description: completed daily quest
+--- !u!114 &-746160238002899500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1|Equip|Horse
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 984, y: 872}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: -746160238002899500}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: -746160238002899500}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -4929458922404199675}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Horse
+  description: 'Slot 2 '
+--- !u!114 &-699863836994143362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1|Equip|Armor
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 984, y: 1048}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: -699863836994143362}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: -699863836994143362}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -4929458922404199675}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Armor
+  description: 'Slot 3 '
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,6 +1104,208 @@ MonoBehaviour:
   - {fileID: 1893716958069650929}
   - {fileID: -2522060201032199898}
   - {fileID: 9062413736014687187}
+  - {fileID: -4917002976862279852}
+  - {fileID: 1052192352806680734}
+  - {fileID: 3425864312601307168}
+  - {fileID: 4426213743667143088}
+  - {fileID: 1055383603654645561}
+  - {fileID: 8826079458002394277}
+  - {fileID: 4235325025039310286}
+  - {fileID: -8799523285818532100}
+  - {fileID: -4929458922404199675}
+  - {fileID: 5819444988677964583}
+  - {fileID: -746160238002899500}
+  - {fileID: -699863836994143362}
+  - {fileID: 2739318694873660566}
+  - {fileID: 275067795487466167}
+  - {fileID: -7015918203952331749}
+  - {fileID: -3792707517680363646}
+  - {fileID: 679276532883554331}
+  - {fileID: -5537003956010357757}
+  - {fileID: 4126997164756225721}
+  - {fileID: -2036304610417832984}
+  - {fileID: -4101783288927669013}
+  - {fileID: -3889857596434159229}
+  - {fileID: 3098670686953821197}
+  - {fileID: 4072242609809207074}
+--- !u!114 &275067795487466167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1|Equip|Helmet
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1224, y: 872}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: 275067795487466167}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: 275067795487466167}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -4929458922404199675}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Helmet
+  description: 'Slot 5 '
+--- !u!114 &679276532883554331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1|UpE|Sword
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 984, y: 168}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: 679276532883554331}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: 679276532883554331}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -3792707517680363646}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Sword
+  description: upgrade slot 1
+--- !u!114 &1052192352806680734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|0|UpE|Sword
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 984, y: -952}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: 1052192352806680734}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: 1052192352806680734}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -4917002976862279852}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Sword
+  description: upgrade slot 1
+--- !u!114 &1055383603654645561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|0|UpE|Shield
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1224, y: -952}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: 1055383603654645561}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: 1055383603654645561}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -4917002976862279852}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Shield
+  description: 'upgrade slot 4
+
+'
 --- !u!114 &1893716958069650929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,10 +1316,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
-  m_Name: Slot6
+  m_Name: Root|Characters|0|Equip|Accessory
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 504, y: 504}
+  position: {x: 1224, y: -40}
   ports:
     keys:
     - child
@@ -606,8 +1348,149 @@ MonoBehaviour:
       _dynamic: 0
   child: 
   parent: 
-  key: Slot6
-  description: Slot 6
+  key: Accessory
+  description: 'Slot 6 '
+--- !u!114 &2739318694873660566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1|Equip|Shield
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1224, y: 696}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: 2739318694873660566}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: 2739318694873660566}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -4929458922404199675}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Shield
+  description: 'Slot 4 '
+--- !u!114 &3098670686953821197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|0
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 185.97072, y: -281.01025}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: 3098670686953821197}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: parent
+        node: {fileID: -4917002976862279852}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: -5461323902105700548}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: 3645507789693404381}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: 3098670686953821197}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -2366902049938655761}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: 0
+  description: Hero id = 0
+--- !u!114 &3425864312601307168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|0|UpE|Horse
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 984, y: -776}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: 3425864312601307168}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: 3425864312601307168}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -4917002976862279852}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Horse
+  description: 'upgrade slot 2 '
 --- !u!114 &3645507789693404381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,10 +1501,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
-  m_Name: Equip
+  m_Name: Root|Characters|0|Equip
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 152, y: 72}
+  position: {x: 520, y: -120}
   ports:
     keys:
     - child
@@ -660,7 +1543,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: child
-        node: {fileID: -2366902049938655761}
+        node: {fileID: 3098670686953821197}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -670,6 +1553,239 @@ MonoBehaviour:
   parent: 
   key: Equip
   description: equip slot
+--- !u!114 &4072242609809207074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 200, y: 24}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: 4072242609809207074}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: parent
+        node: {fileID: -3792707517680363646}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: -8799523285818532100}
+        reroutePoints: []
+      - fieldName: parent
+        node: {fileID: -4929458922404199675}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: 4072242609809207074}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -2366902049938655761}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: 1
+  description: Hero id = 1
+--- !u!114 &4126997164756225721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1|UpE|Armor
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 984, y: 520}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: 4126997164756225721}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: 4126997164756225721}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -3792707517680363646}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Armor
+  description: 'upgrade slot 3
+
+'
+--- !u!114 &4235325025039310286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|0|UpE|Accessory
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1224, y: -600}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: 4235325025039310286}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: 4235325025039310286}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -4917002976862279852}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Accessory
+  description: "upgrade slot 6 \n"
+--- !u!114 &4426213743667143088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|0|UpE|Armor
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 984, y: -600}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: 4426213743667143088}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: 4426213743667143088}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -4917002976862279852}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Armor
+  description: 'upgrade slot 3
+
+'
+--- !u!114 &5819444988677964583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|1|Equip|Sword
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 984, y: 696}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: 5819444988677964583}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: 5819444988677964583}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -4929458922404199675}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Sword
+  description: Slot 1
 --- !u!114 &7961024771443320715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,10 +1796,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
-  m_Name: Mails
+  m_Name: Root|Mails
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -120, y: -424}
+  position: {x: -104, y: -728}
   ports:
     keys:
     - child
@@ -720,6 +1836,50 @@ MonoBehaviour:
   parent: 
   key: Mails
   description: mail tab.
+--- !u!114 &8826079458002394277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
+  m_Name: Root|Characters|0|UpE|Helmet
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1224, y: -776}
+  ports:
+    keys:
+    - child
+    - parent
+    values:
+    - _fieldName: child
+      _node: {fileID: 8826079458002394277}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: 8826079458002394277}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: child
+        node: {fileID: -4917002976862279852}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  child: 
+  parent: 
+  key: Helmet
+  description: "upgrade slot 5 \n"
 --- !u!114 &9062413736014687187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -730,10 +1890,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
-  m_Name: Season
+  m_Name: Root|Quests|Season
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 152, y: 472}
+  position: {x: 152, y: 488}
   ports:
     keys:
     - child

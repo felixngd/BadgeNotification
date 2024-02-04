@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Voidex.Badge.Sample
 {
-    [CreateAssetMenu(fileName = "QuestData", menuName = "BadgeNotification/QuestData")]
+    [CreateAssetMenu(fileName = "QuestData", menuName = "Badge Notification Sample/QuestData")]
     public class QuestData : ScriptableObject
     {
         public List<Quest> dailyQuests;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Voidex.Badge.Sample
 {
-    [CreateAssetMenu(fileName = "MailData", menuName = "BadgeNotification/MailData")]
+    [CreateAssetMenu(fileName = "MailData", menuName = "Badge Notification Sample/MailData")]
     public class MailData : ScriptableObject
     {
         public List<Mail> mails;
