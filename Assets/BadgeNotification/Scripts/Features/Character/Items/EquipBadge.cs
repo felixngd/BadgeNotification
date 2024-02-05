@@ -39,7 +39,7 @@ namespace Voidex.Badge.Sample
         {
             if (message.key.Equals(_key))
             {
-                if (itemSlot.Item.isEquipped)
+                if (itemSlot.Item.isEquipped.Item2)
                 {
                     gameObject.SetActive(false);
                 }

@@ -28,6 +28,9 @@ namespace Voidex.Badge.Sample
             foreach (var itemDataItem in itemData.items)
             {
                 GlobalData.GameResources.Items.Add(itemDataItem);
+                var prefix = "Root|Characters";
+                var postfix = $"Equip|{itemDataItem.name}";
+                GlobalData.BadgeNotification.UpdateBadges(prefix, postfix, +1);
             }
             //init characters
             foreach (var item in characterData.characters)
@@ -78,19 +81,17 @@ namespace Voidex.Badge.Sample
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    var prefix = "Root|Characters";
-                    var postfix = $"Equip|{e.NewItem.name}";
-                    GlobalData.BadgeNotification.UpdateBadges(prefix, postfix, +1);
+                    // var prefix = "Root|Characters";
+                    // var postfix = $"Equip|{e.NewItem.name}";
+                    // GlobalData.BadgeNotification.UpdateBadges(prefix, postfix, +1);
 
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    var prefixRemove = "Root|Characters";
-                    var postfixRemove = $"Equip|{e.OldItem.name}";
-                    GlobalData.BadgeNotification.UpdateBadges(prefixRemove, postfixRemove, -1);
+                    // var prefixRemove = "Root|Characters";
+                    // var postfixRemove = $"Equip|{e.OldItem.name}";
+                    // GlobalData.BadgeNotification.UpdateBadges(prefixRemove, postfixRemove, -1);
                     break;
             }
         }
-        //TODO Add condition for equip badge, if the item is equipped not show badge. If the item is unequipped and value >0, show badge.
-
     }
 }

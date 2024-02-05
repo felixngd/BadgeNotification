@@ -49,9 +49,10 @@ namespace Voidex.Badge.Sample
         public int id;
         public string name;
         public int upgradeCost;
-        public bool isEquipped;
+        public (int, bool) isEquipped;
         public int level;
         public SlotType slotType;
+        public string badgeKey;
         
         public override string ToString()
         {

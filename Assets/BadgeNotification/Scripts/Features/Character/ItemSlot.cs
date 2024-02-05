@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Text;
 using UnityEngine;
@@ -71,7 +72,7 @@ namespace Voidex.Badge.Sample
             if (newItem == null) return;
 
             Item = newItem;
-            Item.isEquipped = true;
+            Item.isEquipped = (_character.Character.id, true);
             ItemManager.Instance.RemoveItem(newItem);
 
             itemText.text = Item.name;
@@ -83,19 +84,35 @@ namespace Voidex.Badge.Sample
             GetComponent<Image>().color = new Color32(0, 128, 0, 255);
             
             //refresh the badge
+            //current slot badge value is set to 0, other slots' value with same type will be -= 1
             GlobalData.BadgeNotification.SetBadgeValue($"Root|Characters|{_character.Character.id}|Equip|{slotType}", 0);
+            
+            var prefixRemove = "Root|Characters";
+            var postfixRemove = $"Equip|{slotType}";
+            GlobalData.BadgeNotification.UpdateBadges(prefixRemove, postfixRemove, -1);
         }
 
         public void UnequipItem()
         {
             if (Item == null || Item.id == -1) return;
-            Item.isEquipped = false;
+            Item.isEquipped = (-1, false);
             ItemManager.Instance.AddItem(Item);
 
             SetEmpty();
+            //Recalculate the badge value
+            var value = GlobalData.GameResources.CountItems(slotType);
+            var postfix = $"Equip|{slotType}";
+            //update current slot badge, do not update the slot that is equipped
+            //get item slots that is equipped
+            var listItems = GlobalData.GameResources.Characters.
+                SelectMany(c => c.items).Where(i => !i.isEquipped.Item2).ToList();
             
-            //refresh the badge
-            GlobalData.BadgeNotification.SetBadgeValue($"Root|Characters|{_character.Character.id}|Equip|{slotType}", 1);
+            GlobalData.BadgeNotification.SetBadgesValue("Root|Characters", value, node =>
+            {
+                var c1 = node.Value.key.EndsWith(postfix);
+                var c2 = listItems.Any(i => node.Value.key.EndsWith(i.badgeKey));
+                return c1 && c2;
+            });
         }
 
         public void UpgradeItem()

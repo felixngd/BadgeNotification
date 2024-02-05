@@ -44,6 +44,8 @@ namespace Voidex.Badge.Sample
 
             for (int i = 0; i < slotViews.Length; i++)
             {
+                var badgeKey = $"{characterId}|Equip|{slotViews[i].slotType}";
+                Character.items[i].badgeKey = badgeKey;
                 slotViews[i].Initialize(Character.items[i]);
             }
         }

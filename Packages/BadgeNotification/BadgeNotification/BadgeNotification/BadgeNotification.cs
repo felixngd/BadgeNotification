@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Cysharp.Text;
 using Voidex.Trie;
 
@@ -137,38 +138,9 @@ namespace Voidex.Badge.Runtime
                 delta = -targetNode.Value.value;
             }
 
-            var node = _trieMap.GetRootTrieNode();
-            ReadOnlySpan<char> remainingKey = key.AsSpan();
-
-            while (!remainingKey.IsEmpty)
-            {
-                int separatorIndex = remainingKey.IndexOf(Const.SEPARATOR);
-                ReadOnlySpan<char> path;
-                if (separatorIndex == -1) // No more separators, process the rest of the string
-                {
-                    path = remainingKey;
-                    remainingKey = ReadOnlySpan<char>.Empty;
-                }
-                else
-                {
-                    path = remainingKey.Slice(0, separatorIndex);
-                    remainingKey = remainingKey.Slice(separatorIndex + 1);
-                }
-
-                var child = node.GetChild(path.ToString());
-                if (child.Value.nodeType == NodeType.Multiple)
-                {
-                    child.Value.value += delta;
-                }
-                else if (child.Value.nodeType == NodeType.Single)
-                {
-                    child.Value.value = delta > 0 ? 1 : 0;
-                }
-
-                node = child;
-                // Notify UI
-                BadgeMessaging.UpdateBadge(node.Value);
-            }
+            targetNode.Value.value += delta;
+            UpdateParents(key);
+            BadgeMessaging.UpdateBadge(targetNode.Value);
         }
 
         /// <summary>
@@ -202,6 +174,25 @@ namespace Voidex.Badge.Runtime
             foreach (var child in children)
             {
                 UpdateNodeAndChildren(child, delta, trieNode => trieNode.Value.key.EndsWith(postfix));
+                UpdateParents(child.Value.key);
+            }
+        }
+        
+        /// <summary>
+        /// Updates the value of the badge and its children by a specified delta, only if the condition is met.
+        /// </summary>
+        /// <param name="keyPrefix"></param>
+        /// <param name="delta"></param>
+        /// <param name="condition"></param>
+        public void UpdateBadges(string keyPrefix, int delta, [NotNull] Func<TrieNode<BadgeData>, bool> condition)
+        {
+            var node = _trieMap.GetTrieNode(keyPrefix);
+            if (node == null) return;
+
+            var children = node.GetChildren();
+            foreach (var child in children)
+            {
+                UpdateNodeAndChildren(child, delta, condition);
                 UpdateParents(child.Value.key);
             }
         }
@@ -294,6 +285,73 @@ namespace Voidex.Badge.Runtime
             BadgeMessaging.UpdateBadge(node.Value);
 
             UpdateParents(key);
+        }
+
+        public void SetNodeAndChildrenValue(TrieNode<BadgeData> node, int value, Func<TrieNode<BadgeData>, bool> condition = null)
+        {
+            bool hasChildren = false;
+            foreach (var child in node.GetChildren())
+            {
+                hasChildren = true;
+                SetNodeAndChildrenValue(child, value, condition);
+            }
+
+            if (condition == null || condition(node))
+            {
+                node.Value.value = value;
+            }
+
+            if (hasChildren)
+            {
+                int sum = 0;
+                foreach (var child in node.GetChildren())
+                {
+                    if (child.Value.nodeType == NodeType.Multiple)
+                    {
+                        sum += child.Value.value;
+                    }
+                    else if (child.Value.nodeType == NodeType.Single)
+                    {
+                        sum += child.Value.value > 0 ? 1 : 0;
+                    }
+                }
+
+                node.Value.value = sum;
+            }
+
+            BadgeMessaging.UpdateBadge(node.Value);
+        }
+
+        /// <summary>
+        /// Set badge value by key prefix
+        /// </summary>
+        /// <param name="keyPrefix"></param>
+        /// <param name="keyPostfix"></param>
+        /// <param name="value"></param>
+        public void SetBadgesValue(string keyPrefix, string keyPostfix, int value)
+        {
+            var node = _trieMap.GetTrieNode(keyPrefix);
+            if (node == null) return;
+
+            var children = node.GetChildren();
+            foreach (var child in children)
+            {
+                SetNodeAndChildrenValue(child, value, trieNode => trieNode.Value.key.EndsWith(keyPostfix));
+                UpdateParents(child.Value.key);
+            }
+        }
+
+        public void SetBadgesValue(string keyPrefix, int value, [NotNull] Func<TrieNode<BadgeData>, bool> condition)
+        {
+            var node = _trieMap.GetTrieNode(keyPrefix);
+            if (node == null) return;
+
+            var children = node.GetChildren();
+            foreach (var child in children)
+            {
+                SetNodeAndChildrenValue(child, value, condition);
+                UpdateParents(child.Value.key);
+            }
         }
 
         /// <summary>

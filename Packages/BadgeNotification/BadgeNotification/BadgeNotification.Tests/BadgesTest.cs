@@ -228,7 +228,7 @@ public class BadgesTest
         var characters = badgeNotification.GetBadgeValue("Root|Characters");
         //0|UpE|Sword = 2; 1|UpE|Sword = 2; 0|Equip|Sword = 1; 1|Equip|Sword = 1
         Assert.AreEqual(6, characters);
-        
+
         var equip_Slot1 = badgeNotification.GetBadgeValue("Root|Characters|1|Equip|Sword");
         Assert.AreEqual(2, equip_Slot1);
         characters = badgeNotification.GetBadgeValue("Root|Characters");
@@ -245,7 +245,7 @@ public class BadgesTest
         //load graph using AssetDatabase
         var badgeGraph = AssetDatabase.LoadAssetAtPath<BadgeGraph>(AssetDatabase.GUIDToAssetPath(graph[0]));
         BadgeNotification badgeNotification = new BadgeNotification(badgeGraph);
-        
+
         /*
          * All the paths in the form of "Root|Characters|*|Equip|*" are Single node in the trie,
          * so if the node's value is >= 1, their parent node uses 1 as their value to count.
@@ -278,13 +278,13 @@ public class BadgesTest
         Assert.AreEqual(4, equip_Slot1);
         characters = badgeNotification.GetBadgeValue("Root|Characters");
         Assert.AreEqual(26, characters);
-        
+
         badgeNotification.UpdateBadges(prefix, postfix, -1);
         equip_Slot1 = badgeNotification.GetBadgeValue("Root|Characters|1|Equip|Sword");
         Assert.AreEqual(3, equip_Slot1);
         characters = badgeNotification.GetBadgeValue("Root|Characters");
         Assert.AreEqual(26, characters);
-        
+
         badgeNotification.UpdateBadges(prefix, postfix, -3);
         equip_Slot1 = badgeNotification.GetBadgeValue("Root|Characters|1|Equip|Sword");
         Assert.AreEqual(0, equip_Slot1);
@@ -300,7 +300,7 @@ public class BadgesTest
         //load graph using AssetDatabase
         var badgeGraph = AssetDatabase.LoadAssetAtPath<BadgeGraph>(AssetDatabase.GUIDToAssetPath(graph[0]));
         BadgeNotification badgeNotification = new BadgeNotification(badgeGraph);
-        
+
         //Root|Characters|1|Equip|Sword is single node in the trie
         badgeNotification.SetBadgeValue("Root|Characters|1|Equip|Sword", 5);
         var badge = badgeNotification.GetBadgeValue("Root|Characters|1|Equip|Sword");
@@ -308,7 +308,98 @@ public class BadgesTest
         badgeNotification.UpdateBadges("Root|Characters", "UpC", 1);
         badge = badgeNotification.GetBadgeValue("Root|Characters|1|UpC");
         Assert.AreEqual(1, badge);
-        
+
         Assert.AreEqual(3, badgeNotification.GetBadgeValue("Root|Characters"));
+    }
+
+    [Test]
+    public void Test_Use_Case_01()
+    {
+        //find graph using AssetDatabase
+        var graph = AssetDatabase.FindAssets("t:BadgeGraph");
+        //load graph using AssetDatabase
+        var badgeGraph = AssetDatabase.LoadAssetAtPath<BadgeGraph>(AssetDatabase.GUIDToAssetPath(graph[0]));
+        BadgeNotification badgeNotification = new BadgeNotification(badgeGraph);
+        
+        string prefix = "Root|Characters";
+        //All the paths in the form of "Root|Characters|*|Equip|*" are Single node in the trie,
+        //Inventory
+        badgeNotification.UpdateBadges(prefix, "Equip|Sword", 3);
+        Assert.AreEqual(3, badgeNotification.GetBadgeValue("Root|Characters|1|Equip|Sword"));
+        badgeNotification.UpdateBadges(prefix, "Equip|Horse", 1);
+        Assert.AreEqual(1, badgeNotification.GetBadgeValue("Root|Characters|1|Equip|Horse"));
+        badgeNotification.UpdateBadges(prefix, "Equip|Armor", 1);
+        Assert.AreEqual(1, badgeNotification.GetBadgeValue("Root|Characters|1|Equip|Armor"));
+        badgeNotification.UpdateBadges(prefix, "Equip|Shield", 1);
+        Assert.AreEqual(1, badgeNotification.GetBadgeValue("Root|Characters|1|Equip|Shield"));
+        badgeNotification.UpdateBadges(prefix, "Equip|Helmet", 1);
+        
+        
+        Assert.AreEqual(1, badgeNotification.GetBadgeValue("Root|Characters|1|Equip|Helmet"));
+        Assert.AreEqual(0, badgeNotification.GetBadgeValue("Root|Characters|1|Equip|Accessory"));
+        Assert.AreEqual(5, badgeNotification.GetBadgeValue("Root|Characters|1|Equip"));
+        Assert.AreEqual(5, badgeNotification.GetBadgeValue("Root|Characters|1"));
+        Assert.AreEqual(10, badgeNotification.GetBadgeValue("Root|Characters"));
+        Assert.AreEqual(3, badgeNotification.GetBadgeValue("Root|Characters|0|Equip|Sword"));
+        
+        //Equip sword to character 1
+        badgeNotification.UpdateBadge("Root|Characters|0|Equip|Sword", -1);
+        Assert.AreEqual(2, badgeNotification.GetBadgeValue("Root|Characters|0|Equip|Sword"));
+        Assert.AreEqual(5, badgeNotification.GetBadgeValue("Root|Characters|0|Equip"));
+        Assert.AreEqual(5, badgeNotification.GetBadgeValue("Root|Characters|0"));
+        
+        badgeNotification.SetBadgeValue("Root|Characters|1|Equip|Sword", 0);
+        Assert.AreEqual(0, badgeNotification.GetBadgeValue("Root|Characters|1|Equip|Sword"));
+        Assert.AreEqual(4, badgeNotification.GetBadgeValue("Root|Characters|1|Equip"));
+        Assert.AreEqual(9, badgeNotification.GetBadgeValue("Root|Characters"));
+        
+        //upgrade character 1
+        badgeNotification.UpdateBadge("Root|Characters|1|UpC", 2);
+        Assert.AreEqual(2, badgeNotification.GetBadgeValue("Root|Characters|1|UpC"));
+        Assert.AreEqual(6, badgeNotification.GetBadgeValue("Root|Characters|1"));
+        Assert.AreEqual(11, badgeNotification.GetBadgeValue("Root|Characters"));
+    }
+
+    [Test]
+    public void Test_Set_Badges_Value_01()
+    {
+        //find graph using AssetDatabase
+        var graph = AssetDatabase.FindAssets("t:BadgeGraph");
+        //load graph using AssetDatabase
+        var badgeGraph = AssetDatabase.LoadAssetAtPath<BadgeGraph>(AssetDatabase.GUIDToAssetPath(graph[0]));
+        BadgeNotification badgeNotification = new BadgeNotification(badgeGraph);
+        
+        //All the paths in the form of "Root|Characters|*|Equip|*" are Single node in the trie,
+        string prefix = "Root|Characters";
+        string postfix = "Equip|Sword";
+        badgeNotification.SetBadgesValue(prefix, postfix, 5);
+        Assert.AreEqual(5, badgeNotification.GetBadgeValue("Root|Characters|0|Equip|Sword"));
+        Assert.AreEqual(5, badgeNotification.GetBadgeValue("Root|Characters|1|Equip|Sword"));
+        Assert.AreEqual(2, badgeNotification.GetBadgeValue("Root|Characters"));
+        Assert.AreEqual(1, badgeNotification.GetBadgeValue("Root|Characters|0"));
+    }
+    
+    [Test]
+    public void Test_Set_Badges_Value_02()
+    {
+        //find graph using AssetDatabase
+        var graph = AssetDatabase.FindAssets("t:BadgeGraph");
+        //load graph using AssetDatabase
+        var badgeGraph = AssetDatabase.LoadAssetAtPath<BadgeGraph>(AssetDatabase.GUIDToAssetPath(graph[0]));
+        BadgeNotification badgeNotification = new BadgeNotification(badgeGraph);
+        
+        //All the paths in the form of "Root|Characters|*|Equip|*" are Single node in the trie,
+        string prefix = "Root|Characters";
+        string postfix = "Equip|Sword";
+        badgeNotification.SetBadgesValue(prefix, postfix, 5);
+        Assert.AreEqual(5, badgeNotification.GetBadgeValue("Root|Characters|0|Equip|Sword"));
+        Assert.AreEqual(5, badgeNotification.GetBadgeValue("Root|Characters|1|Equip|Sword"));
+        Assert.AreEqual(2, badgeNotification.GetBadgeValue("Root|Characters"));
+        Assert.AreEqual(1, badgeNotification.GetBadgeValue("Root|Characters|0"));
+        
+        badgeNotification.SetBadgeValue("Root|Characters|1|UpE|Armor", 3);
+        Assert.AreEqual(3, badgeNotification.GetBadgeValue("Root|Characters|1|UpE|Armor"));
+        Assert.AreEqual(4, badgeNotification.GetBadgeValue("Root|Characters|1"));
+        Assert.AreEqual(5, badgeNotification.GetBadgeValue("Root|Characters"));
     }
 }
