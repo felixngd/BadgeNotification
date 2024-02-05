@@ -43,6 +43,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Horse
+  nodeType: 0
   description: 'Slot 2 '
 --- !u!114 &-8799523285818532100
 MonoBehaviour:
@@ -87,6 +88,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: UpC
+  nodeType: 1
   description: upgrade character
 --- !u!114 &-8236840847292661072
 MonoBehaviour:
@@ -131,6 +133,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Helmet
+  nodeType: 0
   description: 'Slot 5 '
 --- !u!114 &-7596400471911885973
 MonoBehaviour:
@@ -181,6 +184,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Quests
+  nodeType: 1
   description: 'Quest Tab
 
 '
@@ -227,6 +231,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Accessory
+  nodeType: 0
   description: 'Slot 6 '
 --- !u!114 &-6832447709591613770
 MonoBehaviour:
@@ -271,6 +276,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Rewarded
+  nodeType: 1
   description: Mail contains rewards that can be collected
 --- !u!114 &-6312623635550658987
 MonoBehaviour:
@@ -315,6 +321,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Sword
+  nodeType: 0
   description: Slot 1
 --- !u!114 &-6049535425829934984
 MonoBehaviour:
@@ -359,6 +366,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Shield
+  nodeType: 0
   description: 'Slot 4 '
 --- !u!114 &-5537003956010357757
 MonoBehaviour:
@@ -403,6 +411,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Horse
+  nodeType: 1
   description: 'upgrade slot 2 '
 --- !u!114 &-5461323902105700548
 MonoBehaviour:
@@ -447,6 +456,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: UpC
+  nodeType: 1
   description: upgrade character
 --- !u!114 &-4929458922404199675
 MonoBehaviour:
@@ -509,6 +519,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Equip
+  nodeType: 1
   description: equip slot
 --- !u!114 &-4917002976862279852
 MonoBehaviour:
@@ -571,6 +582,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: UpE
+  nodeType: 1
   description: 'upgrade equipment '
 --- !u!114 &-4189786059188831577
 MonoBehaviour:
@@ -615,6 +627,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Armor
+  nodeType: 0
   description: 'Slot 3 '
 --- !u!114 &-4101783288927669013
 MonoBehaviour:
@@ -659,6 +672,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Helmet
+  nodeType: 1
   description: "upgrade slot 5 \n"
 --- !u!114 &-3889857596434159229
 MonoBehaviour:
@@ -703,6 +717,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Accessory
+  nodeType: 1
   description: "upgrade slot 6 \n"
 --- !u!114 &-3792707517680363646
 MonoBehaviour:
@@ -765,6 +780,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: UpE
+  nodeType: 1
   description: upgrade equipment
 --- !u!114 &-2522060201032199898
 MonoBehaviour:
@@ -809,6 +825,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: System
+  nodeType: 1
   description: 'Mail sent from the system. '
 --- !u!114 &-2366902049938655761
 MonoBehaviour:
@@ -859,6 +876,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Characters
+  nodeType: 1
   description: heroes tab
 --- !u!114 &-2036304610417832984
 MonoBehaviour:
@@ -903,6 +921,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Shield
+  nodeType: 1
   description: 'upgrade slot 4
 
 '
@@ -986,6 +1005,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Daily
+  nodeType: 1
   description: completed daily quest
 --- !u!114 &-746160238002899500
 MonoBehaviour:
@@ -1030,6 +1050,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Horse
+  nodeType: 0
   description: 'Slot 2 '
 --- !u!114 &-699863836994143362
 MonoBehaviour:
@@ -1074,6 +1095,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Armor
+  nodeType: 0
   description: 'Slot 3 '
 --- !u!114 &11400000
 MonoBehaviour:
@@ -1171,6 +1193,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Helmet
+  nodeType: 0
   description: 'Slot 5 '
 --- !u!114 &679276532883554331
 MonoBehaviour:
@@ -1215,6 +1238,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Sword
+  nodeType: 1
   description: upgrade slot 1
 --- !u!114 &1052192352806680734
 MonoBehaviour:
@@ -1259,6 +1283,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Sword
+  nodeType: 1
   description: upgrade slot 1
 --- !u!114 &1055383603654645561
 MonoBehaviour:
@@ -1303,6 +1328,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Shield
+  nodeType: 1
   description: 'upgrade slot 4
 
 '
@@ -1349,6 +1375,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Accessory
+  nodeType: 0
   description: 'Slot 6 '
 --- !u!114 &2739318694873660566
 MonoBehaviour:
@@ -1393,6 +1420,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Shield
+  nodeType: 0
   description: 'Slot 4 '
 --- !u!114 &3098670686953821197
 MonoBehaviour:
@@ -1446,6 +1474,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: 0
+  nodeType: 1
   description: Hero id = 0
 --- !u!114 &3425864312601307168
 MonoBehaviour:
@@ -1490,6 +1519,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Horse
+  nodeType: 1
   description: 'upgrade slot 2 '
 --- !u!114 &3645507789693404381
 MonoBehaviour:
@@ -1552,6 +1582,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Equip
+  nodeType: 1
   description: equip slot
 --- !u!114 &4072242609809207074
 MonoBehaviour:
@@ -1605,6 +1636,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: 1
+  nodeType: 1
   description: Hero id = 1
 --- !u!114 &4126997164756225721
 MonoBehaviour:
@@ -1649,6 +1681,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Armor
+  nodeType: 1
   description: 'upgrade slot 3
 
 '
@@ -1695,6 +1728,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Accessory
+  nodeType: 1
   description: "upgrade slot 6 \n"
 --- !u!114 &4426213743667143088
 MonoBehaviour:
@@ -1739,6 +1773,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Armor
+  nodeType: 1
   description: 'upgrade slot 3
 
 '
@@ -1785,6 +1820,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Sword
+  nodeType: 0
   description: Slot 1
 --- !u!114 &7961024771443320715
 MonoBehaviour:
@@ -1835,6 +1871,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Mails
+  nodeType: 1
   description: mail tab.
 --- !u!114 &8826079458002394277
 MonoBehaviour:
@@ -1879,6 +1916,7 @@ MonoBehaviour:
   child: 
   parent: 
   key: Helmet
+  nodeType: 1
   description: "upgrade slot 5 \n"
 --- !u!114 &9062413736014687187
 MonoBehaviour:
@@ -1923,4 +1961,5 @@ MonoBehaviour:
   child: 
   parent: 
   key: Season
+  nodeType: 1
   description: completed season quest

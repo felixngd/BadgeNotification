@@ -7,9 +7,6 @@ namespace RedDotSystem.RedDotEditor
     [CustomNodeEditor(typeof(BadgeNode))]
     public class BadgeNodeEditor : NodeEditor
     {
-        void OnEnable()
-        {
-            
-        }
+
     }
 }

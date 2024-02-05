@@ -15,6 +15,7 @@ namespace Voidex.Badge.Runtime
         [Input] public string parent;
 
         public string key;
+        public NodeType nodeType = NodeType.Multiple;
 
         [TextArea]
         public string description;

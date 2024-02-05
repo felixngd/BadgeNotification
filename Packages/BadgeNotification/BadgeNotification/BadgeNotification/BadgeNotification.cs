@@ -38,13 +38,27 @@ namespace Voidex.Badge.Runtime
             foreach (var node in badgeGraph.nodes)
             {
                 var key = node.GetValue(null).ToString();
-                var value = new BadgeData
+                if (node is BadgeNode badgeNode)
                 {
-                    key = key,
-                    value = 0,
-                };
-                _trieMap.Add(key, value);
-                BadgeMessaging.UpdateBadge(value);
+                    var value = new BadgeData
+                    {
+                        key = key,
+                        value = 0,
+                        nodeType = badgeNode.nodeType
+                    };
+                    _trieMap.Add(key, value);
+                    BadgeMessaging.UpdateBadge(value);
+                }
+                else
+                {
+                    var value = new BadgeData
+                    {
+                        key = key,
+                        value = 0,
+                    };
+                    _trieMap.Add(key, value);
+                    BadgeMessaging.UpdateBadge(value);
+                }
             }
         }
 
@@ -53,7 +67,8 @@ namespace Voidex.Badge.Runtime
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public void AddBadge(string key, int value)
+        /// <param name="nodeType"></param>
+        public void AddBadge(string key, int value, NodeType nodeType = NodeType.Multiple)
         {
             if (_trieMap.HasKey(key)) return;
 
@@ -87,6 +102,7 @@ namespace Voidex.Badge.Runtime
                         {
                             key = fullPathBuilder.ToString(), // Minimize ToString calls
                             value = 0,
+                            nodeType = nodeType
                         };
                         node.SetChild(child);
                     }
@@ -140,7 +156,14 @@ namespace Voidex.Badge.Runtime
                 }
 
                 var child = node.GetChild(path.ToString());
-                child.Value.value += delta;
+                if (child.Value.nodeType == NodeType.Multiple)
+                {
+                    child.Value.value += delta;
+                }
+                else if (child.Value.nodeType == NodeType.Single)
+                {
+                    child.Value.value = delta > 0 ? 1 : 0;
+                }
 
                 node = child;
                 // Notify UI
@@ -202,7 +225,14 @@ namespace Voidex.Badge.Runtime
                 int sum = 0;
                 foreach (var child in node.GetChildren())
                 {
-                    sum += child.Value.value;
+                    if (child.Value.nodeType == NodeType.Multiple)
+                    {
+                        sum += child.Value.value;
+                    }
+                    else if (child.Value.nodeType == NodeType.Single)
+                    {
+                        sum += child.Value.value > 0 ? 1 : 0;
+                    }
                 }
 
                 node.Value.value = sum;
@@ -226,7 +256,14 @@ namespace Voidex.Badge.Runtime
                 int sum = 0;
                 foreach (var child in parent.GetChildren())
                 {
-                    sum += child.Value.value;
+                    if (child.Value.nodeType == NodeType.Multiple)
+                    {
+                        sum += child.Value.value;
+                    }
+                    else if (child.Value.nodeType == NodeType.Single)
+                    {
+                        sum += child.Value.value > 0 ? 1 : 0;
+                    }
                 }
 
                 parent.Value.value = sum;
