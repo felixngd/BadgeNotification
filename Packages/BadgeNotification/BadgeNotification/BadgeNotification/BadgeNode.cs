@@ -1,6 +1,5 @@
 using Cysharp.Text;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Voidex.Trie;
 using XNode;
 
@@ -11,12 +10,6 @@ namespace Voidex.Badge.Runtime
     {
         private const string FIELD = "parent";
         private const string DEFAULT_NAME = "BadgeNode";
-        protected override void Init()
-        {
-            base.Init();
-            // var p = GetInputValue<string>(FIELD);
-            // name = string.IsNullOrEmpty(key) ? DEFAULT_NAME : $"{p}{Const.SEPARATOR}{key}";
-        }
 
         [Output] public string child;
         [Input] public string parent;
@@ -32,6 +25,12 @@ namespace Voidex.Badge.Runtime
             name = string.IsNullOrEmpty(key) ? DEFAULT_NAME : ZString.Concat(p, Const.SEPARATOR, key);
             //save this asset
             UnityEditor.EditorUtility.SetDirty(this);
+            
+            //verify the key is not empty, not contains the separator and not contains the parent value
+            if (string.IsNullOrEmpty(key) || key.Contains(Const.SEPARATOR) || key.Contains(p))
+            {
+                Debug.LogError("Invalid key");
+            }
         }
 
         public override object GetValue(NodePort port)

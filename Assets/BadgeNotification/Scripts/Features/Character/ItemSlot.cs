@@ -83,7 +83,7 @@ namespace Voidex.Badge.Sample
             GetComponent<Image>().color = new Color32(0, 128, 0, 255);
             
             //refresh the badge
-            GlobalData.BadgeNotification.UpdateBadge($"Root|Characters|{_character.Character.id}|Equip|{slotType}", 0);
+            GlobalData.BadgeNotification.SetBadgeValue($"Root|Characters|{_character.Character.id}|Equip|{slotType}", 0);
         }
 
         public void UnequipItem()
@@ -93,6 +93,9 @@ namespace Voidex.Badge.Sample
             ItemManager.Instance.AddItem(Item);
 
             SetEmpty();
+            
+            //refresh the badge
+            GlobalData.BadgeNotification.SetBadgeValue($"Root|Characters|{_character.Character.id}|Equip|{slotType}", 1);
         }
 
         public void UpgradeItem()

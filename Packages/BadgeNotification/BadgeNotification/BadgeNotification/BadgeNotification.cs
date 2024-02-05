@@ -44,7 +44,6 @@ namespace Voidex.Badge.Runtime
                     value = 0,
                 };
                 _trieMap.Add(key, value);
-
                 BadgeMessaging.UpdateBadge(value);
             }
         }
@@ -61,37 +60,47 @@ namespace Voidex.Badge.Runtime
             var node = _trieMap.GetRootTrieNode();
             if (node.Value != null)
                 node.Value.value += value;
-            var paths = key.Split(Const.SEPARATOR);
-            var fullPath = ZString.CreateStringBuilder();
-            foreach (var path in paths)
+
+            ReadOnlySpan<char> keySpan = key.AsSpan();
+            var fullPathBuilder = ZString.CreateStringBuilder();
+            int start = 0;
+
+            for (int i = 0; i <= keySpan.Length; i++)
             {
-                if (fullPath.Length > 0)
+                if (i == keySpan.Length || keySpan[i] == Const.SEPARATOR)
                 {
-                    fullPath.Append(Const.SEPARATOR);
-                }
+                    var pathSpan = keySpan.Slice(start, i - start);
+                    start = i + 1; // Prepare for the next segment
 
-                fullPath.Append(path);
-
-                if (!node.HasChild(path))
-                {
-                    var child = new TrieNode<BadgeData>(path);
-                    child.Value = new BadgeData
+                    if (fullPathBuilder.Length > 0)
                     {
-                        key = fullPath.ToString(),
-                        value = 0,
-                    };
-                    node.SetChild(child);
+                        fullPathBuilder.Append(Const.SEPARATOR);
+                    }
+
+                    fullPathBuilder.Append(pathSpan);
+
+                    string path = pathSpan.ToString(); // Convert span to string for Trie operations
+                    if (!node.HasChild(path))
+                    {
+                        var child = new TrieNode<BadgeData>(path);
+                        child.Value = new BadgeData
+                        {
+                            key = fullPathBuilder.ToString(), // Minimize ToString calls
+                            value = 0,
+                        };
+                        node.SetChild(child);
+                    }
+
+                    node = node.GetChild(path);
+                    node.Value.value += value;
+                    _trieMap.Add(node.Value.key, node.Value);
+
+                    //notify ui
+                    BadgeMessaging.UpdateBadge(node.Value);
                 }
-
-                node = node.GetChild(path);
-
-                node.Value.value += value;
-                _trieMap.Add(node.Value.key, node.Value);
-
-                //notify ui
-                BadgeMessaging.UpdateBadge(node.Value);
             }
         }
+
 
         /// <summary>
         /// Update badge value by delta.
@@ -209,7 +218,7 @@ namespace Voidex.Badge.Runtime
             if (lastIndex == -1) return;
 
             ReadOnlySpan<char> parentKeySpan = keySpan.Slice(0, lastIndex);
-            
+
             string parentKey = parentKeySpan.ToString();
             var parent = _trieMap.GetTrieNode(parentKey);
             if (parent != null)
@@ -229,6 +238,7 @@ namespace Voidex.Badge.Runtime
                 UpdateParents(parentKey);
             }
         }
+
         /// <summary>
         /// Set badge value by key
         /// </summary>

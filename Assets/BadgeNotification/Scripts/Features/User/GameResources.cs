@@ -72,5 +72,19 @@ namespace Voidex.Badge.Sample.Features.User
             myItem.level++;
             return myItem;
         }
+        
+        public int CountItems(SlotType slotType)
+        {
+            int count = 0;
+            foreach (var item in Items)
+            {
+                if (item.slotType == slotType)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
     }
 }
