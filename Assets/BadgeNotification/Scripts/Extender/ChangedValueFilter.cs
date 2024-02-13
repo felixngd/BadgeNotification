@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using MessagePipe;
 
-namespace Voidex.Badge.Sample
+namespace Voidex.Badge.Extender
 {
     public class ChangedValueFilter<T> : MessageHandlerFilter<T>
     {

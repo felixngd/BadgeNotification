@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Root|Characters|0|Equip|Horse
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 984, y: -232}
+  position: {x: 984, y: -216}
   ports:
     keys:
     - child
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: Root|Characters|1|UpC
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 520, y: 488}
+  position: {x: 520, y: 472}
   ports:
     keys:
     - child
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: Root|Characters|0|Equip|Helmet
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 984, y: -40}
+  position: {x: 984, y: 8}
   ports:
     keys:
     - child
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: Root|Characters|1|Equip|Accessory
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1224, y: 1048}
+  position: {x: 1224, y: 1368}
   ports:
     keys:
     - child
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Name: Root|Characters|0|Equip|Sword
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 984, y: -408}
+  position: {x: 984, y: -440}
   ports:
     keys:
     - child
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Name: Root|Characters|0|Equip|Shield
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1224, y: -232}
+  position: {x: 1224, y: -216}
   ports:
     keys:
     - child
@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Name: Root|Characters|1|UpE|Horse
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 984, y: 344}
+  position: {x: 984, y: 472}
   ports:
     keys:
     - child
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Name: Root|Characters|1|Equip
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 520, y: 664}
+  position: {x: 520, y: 680}
   ports:
     keys:
     - child
@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Name: Root|Characters|0|UpE
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 520, y: -472}
+  position: {x: 520, y: -520}
   ports:
     keys:
     - child
@@ -597,7 +597,7 @@ MonoBehaviour:
   m_Name: Root|Characters|0|Equip|Armor
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1224, y: -408}
+  position: {x: 1224, y: -440}
   ports:
     keys:
     - child
@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Name: Root|Characters|1|UpE|Helmet
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1224, y: 344}
+  position: {x: 1224, y: 472}
   ports:
     keys:
     - child
@@ -687,7 +687,7 @@ MonoBehaviour:
   m_Name: Root|Characters|1|UpE|Accessory
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1224, y: 520}
+  position: {x: 1224, y: 696}
   ports:
     keys:
     - child
@@ -732,7 +732,7 @@ MonoBehaviour:
   m_Name: Root|Characters|1|UpE
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 520, y: 312}
+  position: {x: 520, y: 264}
   ports:
     keys:
     - child
@@ -891,7 +891,7 @@ MonoBehaviour:
   m_Name: Root|Characters|1|UpE|Shield
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1224, y: 168}
+  position: {x: 1224, y: 248}
   ports:
     keys:
     - child
@@ -1020,7 +1020,7 @@ MonoBehaviour:
   m_Name: Root|Characters|1|Equip|Horse
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 984, y: 872}
+  position: {x: 984, y: 1144}
   ports:
     keys:
     - child
@@ -1065,7 +1065,7 @@ MonoBehaviour:
   m_Name: Root|Characters|1|Equip|Armor
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 984, y: 1048}
+  position: {x: 984, y: 1368}
   ports:
     keys:
     - child
@@ -1163,7 +1163,7 @@ MonoBehaviour:
   m_Name: Root|Characters|1|Equip|Helmet
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1224, y: 872}
+  position: {x: 1224, y: 1144}
   ports:
     keys:
     - child
@@ -1208,7 +1208,7 @@ MonoBehaviour:
   m_Name: Root|Characters|1|UpE|Sword
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 984, y: 168}
+  position: {x: 984, y: 248}
   ports:
     keys:
     - child
@@ -1253,7 +1253,7 @@ MonoBehaviour:
   m_Name: Root|Characters|0|UpE|Sword
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 984, y: -952}
+  position: {x: 984, y: -1112}
   ports:
     keys:
     - child
@@ -1298,7 +1298,7 @@ MonoBehaviour:
   m_Name: Root|Characters|0|UpE|Shield
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1224, y: -952}
+  position: {x: 1224, y: -1112}
   ports:
     keys:
     - child
@@ -1345,7 +1345,7 @@ MonoBehaviour:
   m_Name: Root|Characters|0|Equip|Accessory
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1224, y: -40}
+  position: {x: 1224, y: 8}
   ports:
     keys:
     - child
@@ -1390,7 +1390,7 @@ MonoBehaviour:
   m_Name: Root|Characters|1|Equip|Shield
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1224, y: 696}
+  position: {x: 1224, y: 920}
   ports:
     keys:
     - child
@@ -1489,7 +1489,7 @@ MonoBehaviour:
   m_Name: Root|Characters|0|UpE|Horse
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 984, y: -776}
+  position: {x: 984, y: -888}
   ports:
     keys:
     - child
@@ -1534,7 +1534,7 @@ MonoBehaviour:
   m_Name: Root|Characters|0|Equip
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 520, y: -120}
+  position: {x: 520, y: -72}
   ports:
     keys:
     - child
@@ -1651,7 +1651,7 @@ MonoBehaviour:
   m_Name: Root|Characters|1|UpE|Armor
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 984, y: 520}
+  position: {x: 984, y: 696}
   ports:
     keys:
     - child
@@ -1698,7 +1698,7 @@ MonoBehaviour:
   m_Name: Root|Characters|0|UpE|Accessory
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1224, y: -600}
+  position: {x: 1224, y: -664}
   ports:
     keys:
     - child
@@ -1743,7 +1743,7 @@ MonoBehaviour:
   m_Name: Root|Characters|0|UpE|Armor
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 984, y: -600}
+  position: {x: 984, y: -664}
   ports:
     keys:
     - child
@@ -1790,7 +1790,7 @@ MonoBehaviour:
   m_Name: Root|Characters|1|Equip|Sword
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 984, y: 696}
+  position: {x: 984, y: 920}
   ports:
     keys:
     - child
@@ -1886,7 +1886,7 @@ MonoBehaviour:
   m_Name: Root|Characters|0|UpE|Helmet
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1224, y: -776}
+  position: {x: 1224, y: -888}
   ports:
     keys:
     - child
@@ -1931,7 +1931,7 @@ MonoBehaviour:
   m_Name: Root|Quests|Season
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 152, y: 488}
+  position: {x: 152, y: 520}
   ports:
     keys:
     - child

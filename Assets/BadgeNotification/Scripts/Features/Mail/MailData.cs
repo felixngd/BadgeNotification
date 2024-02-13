@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace Voidex.Badge.Sample
@@ -28,9 +27,9 @@ namespace Voidex.Badge.Sample
         public int id;
         public bool isRead;
     }
-    
-    [CustomEditor(typeof(MailData))]
-    public class MailDataEditor : Editor
+    #if UNITY_EDITOR
+    [UnityEditor.CustomEditor(typeof(MailData))]
+    public class MailDataEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
@@ -42,4 +41,5 @@ namespace Voidex.Badge.Sample
             }
         }
     }
+    #endif
 }

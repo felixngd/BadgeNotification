@@ -1,7 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Voidex.Badge.Extender;
 using Voidex.Badge.Runtime;
 using Voidex.Badge.Sample.Features.User;
 
@@ -20,8 +19,8 @@ namespace Voidex.Badge.Sample
         {
             _key = badgeNode.GetValue(null).ToString();
             //subscribe to the badge node
-            var messagePipe = BadgeMessaging.GetMessagingService<MessagePipeMessaging>();
-            _disposable = messagePipe.Subscribe(_key, OnBadgeChanged, new ChangedValueFilter<BadgeChangedMessage>());
+            var messagePipe = BadgeMessaging<BadgeValue>.GetMessagingService<MessagePipeMessaging>();
+            _disposable = messagePipe.Subscribe(_key, OnBadgeChanged, new ChangedValueFilter<BadgeChangedMessage<BadgeValue>>());
         }
         
         protected virtual void OnDestroy()
@@ -39,7 +38,7 @@ namespace Voidex.Badge.Sample
                 itemSlot = GetComponentInParent<ItemSlot>();
         }
         
-        protected void OnBadgeChanged(BadgeChangedMessage message)
+        protected void OnBadgeChanged(BadgeChangedMessage<BadgeValue> message)
         {
             if (message.key.Equals(_key))
             {
@@ -50,7 +49,7 @@ namespace Voidex.Badge.Sample
                 }
                 else
                 {
-                    gameObject.SetActive(message.value > 0);
+                    gameObject.SetActive(message.badgeCount > 0);
                     badgeText.text = message.value.ToString();
                 }
             }
@@ -60,7 +59,7 @@ namespace Voidex.Badge.Sample
         {
             if(GlobalData.BadgeNotification == null) return;
             var key = badgeNode.GetValue(null).ToString();
-            var value = GlobalData.BadgeNotification.GetBadgeValue(key);
+            var value = GlobalData.BadgeNotification.GetBadgeCount(key);
             gameObject.SetActive(value > 0);
         }
     }

@@ -30,7 +30,12 @@ namespace Voidex.Badge.Sample
                 GlobalData.GameResources.Items.Add(itemDataItem);
                 var prefix = "Root|Characters";
                 var postfix = $"Equip|{itemDataItem.name}";
-                GlobalData.BadgeNotification.UpdateBadges(prefix, postfix, +1);
+                var countBySlotType = GlobalData.GameResources.Items.Count(x => x.slotType == itemDataItem.slotType);
+                Debug.Log($"countBySlotType: {countBySlotType} - {itemDataItem.slotType}");
+                GlobalData.BadgeNotification.SetBadgesValue(prefix, data =>
+                {
+                    data.badgeCount = countBySlotType;
+                }, node => node.Value.key.EndsWith(postfix));
             }
             //init characters
             foreach (var item in characterData.characters)
@@ -55,11 +60,11 @@ namespace Voidex.Badge.Sample
                 {
                     //init upgrade item badge
                     var value2 = GlobalData.GameResources.Coin / (10 * ((int) (SlotType) i + 1));
-                    GlobalData.BadgeNotification.SetBadgeValue($"Root|Characters|{character.id}|UpE|{(SlotType) i}", value2);
+                    GlobalData.BadgeNotification.SetBadgeCount($"Root|Characters|{character.id}|UpE|{(SlotType) i}", value2);
                 }
                 //init upgrade character badge
                 var value = GlobalData.GameResources.Exp / 20;
-                GlobalData.BadgeNotification.SetBadgeValue($"Root|Characters|{character.id}|UpC", value);
+                GlobalData.BadgeNotification.SetBadgeCount($"Root|Characters|{character.id}|UpC", value);
             }
         }
 

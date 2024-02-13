@@ -6,7 +6,7 @@ using XNode;
 namespace Voidex.Badge.Runtime
 {
     [System.Serializable]
-    public class BadgeNode : XNode.Node
+    public partial class BadgeNode : XNode.Node
     {
         private const string FIELD = "parent";
         private const string DEFAULT_NAME = "BadgeNode";

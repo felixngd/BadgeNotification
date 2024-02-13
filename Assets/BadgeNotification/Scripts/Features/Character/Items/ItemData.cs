@@ -22,7 +22,8 @@ namespace Voidex.Badge.Sample
                     id = i,
                     upgradeCost = 10,
                     name = names.Split(',')[i],
-                    slotType = (SlotType)Enum.Parse(typeof(SlotType), names.Split(',')[i])
+                    slotType = (SlotType)Enum.Parse(typeof(SlotType), names.Split(',')[i]),
+                    level = 1
                 });
             }
         }
@@ -49,7 +50,7 @@ namespace Voidex.Badge.Sample
         public int id;
         public string name;
         public int upgradeCost;
-        public (int, bool) isEquipped;
+        public (int heroId, bool equipped) isEquipped;
         public int level;
         public SlotType slotType;
         public string badgeKey;

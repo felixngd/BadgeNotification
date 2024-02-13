@@ -1,10 +1,11 @@
 {
-    "name": "Voidex.RedDot.Editor",
-    "rootNamespace": "Voidex.RedDot.Editor",
+    "name": "Voidex.BadgeNotification.Extender",
+    "rootNamespace": "",
     "references": [
-        "XNode",
-        "XNodeEditor",
-        "Voidex.BadgeNotification.Runtime"
+        "MessagePipe",
+        "Voidex.BadgeNotification.Runtime",
+        "UniTask",
+        "XNode"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

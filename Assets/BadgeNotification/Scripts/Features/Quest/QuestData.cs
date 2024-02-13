@@ -9,7 +9,7 @@ namespace Voidex.Badge.Sample
     {
         public List<Quest> dailyQuests;
         public List<Quest> seasonQuests;
-        
+
         public void RandomData()
         {
             dailyQuests = new List<Quest>();
@@ -27,27 +27,28 @@ namespace Voidex.Badge.Sample
                     isCompleted = Random.Range(0, 2) == 1, questType = Quest.QuestType.Season
                 });
             }
-            
+
             //save
             EditorUtility.SetDirty(this);
         }
     }
+
     [System.Serializable]
     public class Quest
     {
         public int id;
         public bool isCompleted;
         public QuestType questType;
-        
+
         public enum QuestType
         {
             Daily,
             Season
         }
     }
-    
+#if UNITY_EDITOR
     [CustomEditor(typeof(QuestData))]
-    public class QuestDataEditor : Editor
+    public class QuestDataEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
@@ -59,4 +60,5 @@ namespace Voidex.Badge.Sample
             }
         }
     }
+#endif
 }

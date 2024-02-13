@@ -1,7 +1,7 @@
 {
   "name": "com.voidex.badgenotification",
   "displayName": "Badge Notification",
-  "version": "0.2.0",
+  "version": "0.5.0",
   "unity": "2022.3",
   "license": "MIT",
   "dependencies": {

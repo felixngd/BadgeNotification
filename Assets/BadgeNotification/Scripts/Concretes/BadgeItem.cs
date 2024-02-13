@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Voidex.Badge.Extender;
 using Voidex.Badge.Sample;
 
 namespace Voidex.Badge.Runtime
@@ -15,8 +16,8 @@ namespace Voidex.Badge.Runtime
         protected virtual void Awake()
         {
             //subscribe to the badge node
-            var messagePipe = BadgeMessaging.GetMessagingService<MessagePipeMessaging>();
-           _disposable = messagePipe.Subscribe(badgeNode.GetValue(null).ToString(), OnBadgeChanged, new ChangedValueFilter<BadgeChangedMessage>());
+            var messagePipe = SampleBadgeMessaging.GetMessagingService<MessagePipeMessaging>();
+           _disposable = messagePipe.Subscribe(badgeNode.GetValue(null).ToString(), OnBadgeChanged, new ChangedValueFilter<BadgeChangedMessage<BadgeValue>>());
         }
 
         protected virtual void OnDestroy()
@@ -25,6 +26,6 @@ namespace Voidex.Badge.Runtime
             _disposable.Dispose();
         }
 
-        protected abstract void OnBadgeChanged(BadgeChangedMessage message);
+        protected abstract void OnBadgeChanged(BadgeChangedMessage<BadgeValue> message);
     }
 }

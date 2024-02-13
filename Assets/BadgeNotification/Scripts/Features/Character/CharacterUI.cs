@@ -55,7 +55,7 @@ namespace Voidex.Badge.Sample
             //for example: 20 exp is needed to upgrade a level of the hero
             var value = GlobalData.GameResources.Exp / 20;
 
-            GlobalData.BadgeNotification.SetBadgeValue($"Root|Characters|{characterId}|UpC", value);
+            GlobalData.BadgeNotification.SetBadgeCount($"Root|Characters|{characterId}|UpC", value);
         }
     }
 }

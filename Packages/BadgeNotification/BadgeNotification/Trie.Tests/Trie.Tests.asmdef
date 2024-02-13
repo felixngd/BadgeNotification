@@ -4,7 +4,9 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Voidex.Trie"
+        "Voidex.Trie",
+        "Unity.PerformanceTesting",
+        "Voidex.BadgeNotification.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

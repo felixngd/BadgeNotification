@@ -3,10 +3,10 @@ using Voidex.Badge.Runtime.Interfaces;
 
 namespace Voidex.Badge.Runtime
 {
-    public static class BadgeMessaging
+    public static class BadgeMessaging<TMessage> where TMessage : struct
     {
-        static IPubSub<BadgeChangedMessage> s_pubSub;
-        public static void Initialize(IPubSub<BadgeChangedMessage> pubSub)
+        static IPubSub<BadgeChangedMessage<TMessage>> s_pubSub;
+        public static void Initialize(IPubSub<BadgeChangedMessage<TMessage>> pubSub)
         {
             //GlobalMessaging<BadgeChangedMessage>.Initialize(pubSub);
             s_pubSub = pubSub;
@@ -15,34 +15,17 @@ namespace Voidex.Badge.Runtime
         {
             return (T)s_pubSub;
         }
-        
-        public static void UpdateBadge(string key, int value)
+
+
+        public static void UpdateBadge(BadgeData<TMessage> badgeData)
         {
-            s_pubSub.Publish(new BadgeChangedMessage
-            {
-                key = key,
-                value = value
-            });
-        }
-        
-        public static void UpdateBadge(BadgeData badgeData)
-        {
-            s_pubSub.Publish(new BadgeChangedMessage
+            s_pubSub.Publish(new BadgeChangedMessage<TMessage>
             {
                 key = badgeData.key,
-                value = badgeData.value
+                value = badgeData.value,
+                badgeCount = badgeData.badgeCount
             });
-            
-        }
-        
-        public static void Publish(BadgeChangedMessage message)
-        {
-            s_pubSub.Publish(message);
-        }
-        
-        public static void Subscribe(string key, System.Action<BadgeChangedMessage> action)
-        {
-            s_pubSub.Subscribe(key, action);
+
         }
     }
 }

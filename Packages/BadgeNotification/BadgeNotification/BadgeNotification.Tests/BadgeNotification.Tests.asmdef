@@ -7,7 +7,8 @@
         "Voidex.BadgeNotification.Runtime",
         "XNode",
         "Voidex.BadgeNotification.Sample",
-        "Voidex.Trie"
+        "Voidex.Trie",
+        "Unity.PerformanceTesting"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

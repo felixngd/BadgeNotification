@@ -51,54 +51,37 @@ namespace Voidex.Trie
 
         internal TrieNodeBase GetTrieNodeInner(string prefix)
         {
-            // TrieNodeBase trieNode = this;
-            // ReadOnlySpan<char> remaining = prefix.AsSpan();
-            //
-            // while (!remaining.IsEmpty)
-            // {
-            //     int separatorIndex = remaining.IndexOf(Const.SEPARATOR);
-            //     ReadOnlySpan<char> word;
-            //
-            //     if (separatorIndex == -1)
-            //     {
-            //         word = remaining;
-            //         remaining = ReadOnlySpan<char>.Empty;
-            //     }
-            //     else
-            //     {
-            //         word = remaining.Slice(0, separatorIndex);
-            //         remaining = remaining.Slice(separatorIndex + 1);
-            //     }
-            //
-            //     if (word.IsEmpty || word.IsWhiteSpace())
-            //     {
-            //         continue;
-            //     }
-            //     
-            //     trieNode = trieNode.GetChildInner(word.ToString());
-            //     if (trieNode == null)
-            //     {
-            //         break;
-            //     }
-            // }
-            //
-            // return trieNode;
             TrieNodeBase trieNode = this;
-            string[] words = prefix.Split(Const.SEPARATOR);
-
-            foreach (var word in words)
+            ReadOnlySpan<char> remaining = prefix.AsSpan();
+            
+            while (!remaining.IsEmpty)
             {
-                if (string.IsNullOrEmpty(word))
+                int separatorIndex = remaining.IndexOf(Const.SEPARATOR);
+                ReadOnlySpan<char> word;
+            
+                if (separatorIndex == -1)
+                {
+                    word = remaining;
+                    remaining = ReadOnlySpan<char>.Empty;
+                }
+                else
+                {
+                    word = remaining.Slice(0, separatorIndex);
+                    remaining = remaining.Slice(separatorIndex + 1);
+                }
+            
+                if (word.IsEmpty || word.IsWhiteSpace())
                 {
                     continue;
                 }
                 
-                trieNode = trieNode.GetChildInner(word);
+                trieNode = trieNode.GetChildInner(word.ToString());
                 if (trieNode == null)
                 {
                     break;
                 }
             }
+            
             return trieNode;
         }
 
@@ -128,6 +111,12 @@ namespace Voidex.Trie
         {
             return Word == other.Word;
         }
+        
+        public bool HasChildren()
+        {
+            return _children.Count > 0;
+        }
+
 
         #endregion
 

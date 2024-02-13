@@ -1,0 +1,19 @@
+{
+    "name": "Voidex.RedDot.Editor",
+    "rootNamespace": "Voidex.RedDot.Editor",
+    "references": [
+        "XNode",
+        "XNodeEditor",
+        "Voidex.BadgeNotification.Extender",
+        "Voidex.BadgeNotification.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

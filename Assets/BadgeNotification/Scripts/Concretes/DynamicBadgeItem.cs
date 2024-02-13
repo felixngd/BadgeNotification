@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Voidex.Badge.Extender;
 using Voidex.Badge.Runtime;
 using Voidex.Badge.Sample.Features.User;
 
@@ -15,7 +16,7 @@ namespace Voidex.Badge.Sample
         private void OnEnable()
         {
             if(string.IsNullOrEmpty(key)) return;
-            var value = GlobalData.BadgeNotification.GetBadgeValue(key);
+            var value = GlobalData.BadgeNotification.GetBadgeCount(key);
             gameObject.SetActive(value > 0);
         }
         protected void OnDestroy()
@@ -24,15 +25,15 @@ namespace Voidex.Badge.Sample
             _disposable?.Dispose();
         }
 
-        private void OnBadgeChanged(BadgeChangedMessage message)
+        private void OnBadgeChanged(BadgeChangedMessage<BadgeValue> message)
         {
             if (message.key.Equals(key))
             {
-                if(message.value > 1){
+                if(message.badgeCount > 1){
                     text.text = message.value.ToString();
                     text.gameObject.SetActive(true);
                     gameObject.SetActive(true);
-                }else if(message.value == 1){
+                }else if(message.badgeCount == 1){
                     text.gameObject.SetActive(false);
                     gameObject.SetActive(true);
                 }
@@ -48,8 +49,8 @@ namespace Voidex.Badge.Sample
         {
             //subscribe to the badge node
             this.key = value;
-            var messagePipe = BadgeMessaging.GetMessagingService<MessagePipeMessaging>();
-            _disposable = messagePipe.Subscribe(key, OnBadgeChanged, new ChangedValueFilter<BadgeChangedMessage>());
+            var messagePipe = SampleBadgeMessaging.GetMessagingService<MessagePipeMessaging>();
+            _disposable = messagePipe.Subscribe(key, OnBadgeChanged, new ChangedValueFilter<BadgeChangedMessage<BadgeValue>>());
         }
     }
 }

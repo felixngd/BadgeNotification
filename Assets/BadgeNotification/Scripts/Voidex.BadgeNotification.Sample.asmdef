@@ -9,7 +9,8 @@
         "Unity.TextMeshPro",
         "ObservableCollections",
         "ZString",
-        "Voidex.Trie"
+        "Voidex.Trie",
+        "Voidex.BadgeNotification.Extender"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

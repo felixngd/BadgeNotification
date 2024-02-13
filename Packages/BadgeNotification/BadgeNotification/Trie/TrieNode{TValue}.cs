@@ -77,7 +77,7 @@ namespace Voidex.Trie
         {
             return base.GetChildrenInner().Cast<TrieNode<TValue>>();
         }
-
+        
         #endregion
     }
 }

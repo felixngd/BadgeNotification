@@ -16,42 +16,42 @@ MonoBehaviour:
   - id: 0
     name: Sword
     upgradeCost: 10
-    isEquipped: 0
-    level: 0
+    level: 1
     slotType: 0
+    badgeKey: 
+  - id: 0
+    name: Sword
+    upgradeCost: 10
+    level: 1
+    slotType: 0
+    badgeKey: 
+  - id: 0
+    name: Sword
+    upgradeCost: 10
+    level: 1
+    slotType: 0
+    badgeKey: 
   - id: 1
     name: Shield
     upgradeCost: 10
-    isEquipped: 0
-    level: 0
+    level: 1
     slotType: 3
+    badgeKey: 
   - id: 2
     name: Armor
     upgradeCost: 10
-    isEquipped: 0
-    level: 0
+    level: 1
     slotType: 2
+    badgeKey: 
   - id: 3
     name: Horse
     upgradeCost: 10
-    isEquipped: 0
-    level: 0
+    level: 1
     slotType: 1
+    badgeKey: 
   - id: 4
     name: Helmet
     upgradeCost: 10
-    isEquipped: 0
-    level: 0
+    level: 1
     slotType: 4
-  - id: 0
-    name: Sword
-    upgradeCost: 10
-    isEquipped: 0
-    level: 0
-    slotType: 0
-  - id: 0
-    name: Sword
-    upgradeCost: 10
-    isEquipped: 0
-    level: 0
-    slotType: 0
+    badgeKey: 

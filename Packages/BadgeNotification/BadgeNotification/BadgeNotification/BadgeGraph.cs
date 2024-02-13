@@ -9,7 +9,8 @@ namespace Voidex.Badge.Runtime
     [CreateAssetMenu(fileName = "RedDotGraph", menuName = "BadgeNotification/Graph")]
     public class BadgeGraph : XNode.NodeGraph
     {
-        public TrieMap<BadgeData> trieMap = new TrieMap<BadgeData>();
+#if UNITY_EDITOR
+        public TrieMap<BadgeData<int>> trieMap = new TrieMap<BadgeData<int>>();
 #if ODIN_INSPECTOR
         [Button]
 #endif
@@ -18,10 +19,11 @@ namespace Voidex.Badge.Runtime
             foreach (var node in nodes)
             {
                 var key = node.GetValue(null).ToString();
-                trieMap.Add(key, new BadgeData
+                trieMap.Add(key, new BadgeData<int>
                 {
                     key = key,
-                    value = 0
+                    value = 0,
+                    badgeCount = 0,
                 });
             }
 
@@ -32,5 +34,6 @@ namespace Voidex.Badge.Runtime
                 Debug.Log(key);
             }
         }
+#endif
     }
 }

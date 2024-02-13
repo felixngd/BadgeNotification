@@ -1,9 +1,15 @@
 namespace Voidex.Badge.Runtime
 {
-    public class BadgeData
+    /// <summary>
+    /// BadgeData is a struct that holds the data for a badge in the trie.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    [System.Serializable]
+    public class BadgeData<T> where T : struct
     {
         public string key;
-        public int value;
+        public int badgeCount;
+        public T value;
         public NodeType nodeType;
     }
 

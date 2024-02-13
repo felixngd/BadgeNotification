@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Cysharp.Text;
 
 namespace Voidex.Trie
@@ -67,6 +68,7 @@ namespace Voidex.Trie
         /// <summary>
         /// Gets all TValue items from TrieMap.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<TValue> Values()
         {
             return ValuesBy(Const.ROOT);
@@ -75,6 +77,7 @@ namespace Voidex.Trie
         /// <summary>
         /// Gets keys by key prefix from TrieMap.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<string> KeysBy(string keyPrefix)
         {
             var node = GetTrieNode(keyPrefix);
@@ -94,6 +97,7 @@ namespace Voidex.Trie
         /// <summary>
         /// Gets all keys from TrieMap.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<string> Keys()
         {
             return KeysBy(Const.ROOT);
@@ -102,6 +106,7 @@ namespace Voidex.Trie
         /// <summary>
         /// Gets string->TValue pairs by key prefix from TrieMap.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<KeyValuePair<string, TValue>> KeyValuePairsBy(string keyPrefix)
         {
             var node = GetTrieNode(keyPrefix);
@@ -115,6 +120,7 @@ namespace Voidex.Trie
 
                 buffer.Append(node.Word);
             }
+
             foreach (var kvPair in
                      Traverse
                      (
@@ -138,6 +144,7 @@ namespace Voidex.Trie
         /// <summary>
         /// Adds TValue item for key to TrieMap.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Add(string key, TValue value)
         {
             var trieNode = rootTrieNode;
@@ -247,7 +254,7 @@ namespace Voidex.Trie
             GetShortestKeyValuePairs(rootTrieNode, shortestKeyValuePairs, buffer, length);
             return shortestKeyValuePairs;
         }
-        
+
 
         /// <summary>
         /// Clears all values from TrieMap.
@@ -272,6 +279,7 @@ namespace Voidex.Trie
         /// <summary>
         /// DFS traversal starting from given TrieNode and yield.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private IEnumerable<TResult> Traverse<TResult>(TrieNode<TValue> trieNode,
             Utf16ValueStringBuilder buffer, Func<Utf16ValueStringBuilder, TValue, TResult> transform)
         {
@@ -279,7 +287,7 @@ namespace Voidex.Trie
             {
                 yield break;
             }
-            
+
             if (trieNode.HasValue())
             {
                 yield return transform(buffer, trieNode.Value);
@@ -359,6 +367,34 @@ namespace Voidex.Trie
                 buffer.Append(child.Word);
                 GetShortestKeyValuePairs(child, shortestKeyValuePairs, buffer, length);
                 buffer.Remove(bufferLengthBeforeAppend, buffer.Length - bufferLengthBeforeAppend);
+            }
+        }
+
+        public IEnumerable<TrieNode<TValue>> GetLeafNodes()
+        {
+            return TraverseLeafNodes(rootTrieNode);
+        }
+
+        private IEnumerable<TrieNode<TValue>> TraverseLeafNodes(TrieNode<TValue> trieNode)
+        {
+            if (trieNode == null)
+            {
+                yield break;
+            }
+
+            if (trieNode.HasValue())
+            {
+                yield return trieNode;
+            }
+
+            var children = trieNode.GetChildren();
+            
+            foreach (var child in children)
+            {
+                foreach (var item in TraverseLeafNodes(child))
+                {
+                    yield return item;
+                }
             }
         }
 

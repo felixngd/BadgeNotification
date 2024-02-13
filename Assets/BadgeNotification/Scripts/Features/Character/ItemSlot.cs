@@ -3,6 +3,7 @@ using System.Linq;
 using Cysharp.Text;
 using UnityEngine;
 using UnityEngine.UI;
+using Voidex.Badge.Extender;
 using Voidex.Badge.Sample.Features.User;
 
 namespace Voidex.Badge.Sample
@@ -37,7 +38,7 @@ namespace Voidex.Badge.Sample
         {
             //assume the upgrade cost is the multiple of 10 of the slot type
             var value = GlobalData.GameResources.Coin / (10 * ((int) slotType + 1));
-            GlobalData.BadgeNotification.SetBadgeValue($"Root|Characters|{_character.Character.id}|UpE|{slotType}", value);
+            GlobalData.BadgeNotification.SetBadgeCount($"Root|Characters|{_character.Character.id}|UpE|{slotType}", value);
         }
 
         private void OnClick()
@@ -82,14 +83,20 @@ namespace Voidex.Badge.Sample
             levelText.color = Color.white;
 
             GetComponent<Image>().color = new Color32(0, 128, 0, 255);
-            
-            //refresh the badge
-            //current slot badge value is set to 0, other slots' value with same type will be -= 1
-            GlobalData.BadgeNotification.SetBadgeValue($"Root|Characters|{_character.Character.id}|Equip|{slotType}", 0);
-            
+
+            //equipped slot badge = 0, badge rank = item level
+            GlobalData.BadgeNotification.SetBadgeValue($"Root|Characters|{_character.Character.id}|Equip|{slotType}", 0, new BadgeValue() {rank = Item.level});
+
             var prefixRemove = "Root|Characters";
             var postfixRemove = $"Equip|{slotType}";
-            GlobalData.BadgeNotification.UpdateBadges(prefixRemove, postfixRemove, -1);
+            //badge from other character with same slot type will be subtracted
+            GlobalData.BadgeNotification.UpdateBadges(prefixRemove, -1, node =>
+            {
+                var c1 = node.Value.key.EndsWith($"{_character.Character.id}|{postfixRemove}");
+                var c2 = node.Value.key.EndsWith(postfixRemove);
+                var c3 = node.Value.badgeCount > 0;
+                return !c1 && c2 && c3;
+            });
         }
 
         public void UnequipItem()
@@ -99,20 +106,33 @@ namespace Voidex.Badge.Sample
             ItemManager.Instance.AddItem(Item);
 
             SetEmpty();
-            //Recalculate the badge value
-            var value = GlobalData.GameResources.CountItems(slotType);
+
+            System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+            stopwatch.Start();
+
+            //recalculate the badges with same slot type
+            var prefix = "Root|Characters";
             var postfix = $"Equip|{slotType}";
-            //update current slot badge, do not update the slot that is equipped
-            //get item slots that is equipped
-            var listItems = GlobalData.GameResources.Characters.
-                SelectMany(c => c.items).Where(i => !i.isEquipped.Item2).ToList();
+            var value = GlobalData.GameResources.CountItems(slotType);
+            //unequip set rank for itself to 0, badge count = 0
+            GlobalData.BadgeNotification.SetBadgeValue($"Root|Characters|{_character.Character.id}|Equip|{slotType}", value, new BadgeValue() {rank = 0});
             
-            GlobalData.BadgeNotification.SetBadgesValue("Root|Characters", value, node =>
+            //highest level
+            var maxLevel = GlobalData.GameResources.Items.Where(i => i.slotType == slotType).Max(i => i.level);
+            //set the badge slot badgeCount = 1 if the item on the slot is less than the max level
+            GlobalData.BadgeNotification.SetBadgesValue(prefix, data =>
+            {
+                data.badgeCount = 1;
+            } , node =>
             {
                 var c1 = node.Value.key.EndsWith(postfix);
-                var c2 = listItems.Any(i => node.Value.key.EndsWith(i.badgeKey));
-                return c1 && c2;
+                var c2 = node.Value.value.rank < maxLevel;
+                var c3 = Item.isEquipped.equipped;
+                return c1 && c2 && c3;
             });
+
+            stopwatch.Stop();
+            Debug.Log("Unequip - update badges in: " + stopwatch.ElapsedMilliseconds + "ms");
         }
 
         public void UpgradeItem()
