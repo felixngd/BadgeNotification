@@ -46,7 +46,7 @@ namespace Voidex.Trie
         /// <summary>
         /// Adds TValue item for key to TrieMap.
         /// </summary>
-        void Add(string key, TValue value);
+        void Add(string path, TValue value);
 
         /// <summary>
         /// Returns true if key present in TrieMap.

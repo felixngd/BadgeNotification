@@ -7,7 +7,7 @@ namespace Voidex.Badge.Runtime
     [System.Serializable]
     public class BadgeData<T> where T : struct
     {
-        public string key;
+        //public string key;
         public int badgeCount;
         public T value;
         public NodeType nodeType;

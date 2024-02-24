@@ -7898,6 +7898,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1308655616}
     - target: {fileID: 1227539300278876996, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
+      propertyPath: badgeNode
+      value: 
+      objectReference: {fileID: -5537003956010357757, guid: 70596c030b1cc4d4583612afc9c8171f, type: 2}
+    - target: {fileID: 1227539300278876996, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
       propertyPath: badgeText
       value: 
       objectReference: {fileID: 886053825}
@@ -7905,6 +7909,10 @@ PrefabInstance:
       propertyPath: itemSlot
       value: 
       objectReference: {fileID: 1308655613}
+    - target: {fileID: 1311178388100163282, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
+      propertyPath: badgeNode
+      value: 
+      objectReference: {fileID: -4101783288927669013, guid: 70596c030b1cc4d4583612afc9c8171f, type: 2}
     - target: {fileID: 1311178388100163282, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
       propertyPath: badgeText
       value: 
@@ -8050,6 +8058,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1308655612}
     - target: {fileID: 5008034996858673871, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
+      propertyPath: badgeNode
+      value: 
+      objectReference: {fileID: -3889857596434159229, guid: 70596c030b1cc4d4583612afc9c8171f, type: 2}
+    - target: {fileID: 5008034996858673871, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
       propertyPath: badgeText
       value: 
       objectReference: {fileID: 437692958}
@@ -8072,7 +8084,7 @@ PrefabInstance:
     - target: {fileID: 5857493915806786434, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
       propertyPath: badgeNode
       value: 
-      objectReference: {fileID: -6049535425829934984, guid: 70596c030b1cc4d4583612afc9c8171f, type: 2}
+      objectReference: {fileID: 2739318694873660566, guid: 70596c030b1cc4d4583612afc9c8171f, type: 2}
     - target: {fileID: 6103323468842939252, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
       propertyPath: slotType
       value: 5
@@ -8107,6 +8119,10 @@ PrefabInstance:
       propertyPath: itemSlot
       value: 
       objectReference: {fileID: 1308655617}
+    - target: {fileID: 6455259616737938892, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
+      propertyPath: badgeNode
+      value: 
+      objectReference: {fileID: 679276532883554331, guid: 70596c030b1cc4d4583612afc9c8171f, type: 2}
     - target: {fileID: 6455259616737938892, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
       propertyPath: badgeText
       value: 
@@ -8200,6 +8216,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1308655615}
     - target: {fileID: 7077279008230552913, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
+      propertyPath: badgeNode
+      value: 
+      objectReference: {fileID: 4126997164756225721, guid: 70596c030b1cc4d4583612afc9c8171f, type: 2}
+    - target: {fileID: 7077279008230552913, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
       propertyPath: badgeText
       value: 
       objectReference: {fileID: 1346622548}
@@ -8235,6 +8255,10 @@ PrefabInstance:
       propertyPath: itemSlot
       value: 
       objectReference: {fileID: 1308655614}
+    - target: {fileID: 7375582248518847194, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
+      propertyPath: badgeNode
+      value: 
+      objectReference: {fileID: -2036304610417832984, guid: 70596c030b1cc4d4583612afc9c8171f, type: 2}
     - target: {fileID: 7375582248518847194, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
       propertyPath: badgeText
       value: 
@@ -13961,6 +13985,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8061074661032511027}
     - target: {fileID: 1227539300278876996, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
+      propertyPath: badgeNode
+      value: 
+      objectReference: {fileID: 3425864312601307168, guid: 70596c030b1cc4d4583612afc9c8171f, type: 2}
+    - target: {fileID: 1227539300278876996, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
       propertyPath: badgeText
       value: 
       objectReference: {fileID: 1221552000}
@@ -13968,6 +13996,10 @@ PrefabInstance:
       propertyPath: itemSlot
       value: 
       objectReference: {fileID: 8061074661032511024}
+    - target: {fileID: 1311178388100163282, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
+      propertyPath: badgeNode
+      value: 
+      objectReference: {fileID: 8826079458002394277, guid: 70596c030b1cc4d4583612afc9c8171f, type: 2}
     - target: {fileID: 1396316018651371206, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -14108,6 +14140,10 @@ PrefabInstance:
       propertyPath: itemSlot
       value: 
       objectReference: {fileID: 8061074661032511023}
+    - target: {fileID: 5008034996858673871, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
+      propertyPath: badgeNode
+      value: 
+      objectReference: {fileID: 4235325025039310286, guid: 70596c030b1cc4d4583612afc9c8171f, type: 2}
     - target: {fileID: 5235137131396637815, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
       propertyPath: upgradeButton
       value: 
@@ -14244,6 +14280,10 @@ PrefabInstance:
       propertyPath: itemSlot
       value: 
       objectReference: {fileID: 8061074661032511026}
+    - target: {fileID: 7077279008230552913, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
+      propertyPath: badgeNode
+      value: 
+      objectReference: {fileID: 4426213743667143088, guid: 70596c030b1cc4d4583612afc9c8171f, type: 2}
     - target: {fileID: 7220108589010495320, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -14272,6 +14312,10 @@ PrefabInstance:
       propertyPath: itemSlot
       value: 
       objectReference: {fileID: 8061074661032511025}
+    - target: {fileID: 7375582248518847194, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
+      propertyPath: badgeNode
+      value: 
+      objectReference: {fileID: 1055383603654645561, guid: 70596c030b1cc4d4583612afc9c8171f, type: 2}
     - target: {fileID: 7424710872588794574, guid: 89ed86f9f2b264bc5a5686638f74f37b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

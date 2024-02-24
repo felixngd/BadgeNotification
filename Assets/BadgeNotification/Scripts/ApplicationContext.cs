@@ -8,7 +8,9 @@ namespace Voidex.Badge.Sample
 {
     public class ApplicationContext : MonoBehaviour
     {
+#if USE_XNODE
         [SerializeField] private BadgeGraph badgeGraph;
+#endif
 
         private void Awake()
         {
@@ -18,7 +20,9 @@ namespace Voidex.Badge.Sample
         private void Initialize()
         {
             SampleBadgeMessaging.Initialize();
+#if USE_XNODE
             GlobalData.InitBadgeNotification(badgeGraph);
+#endif
         }
 
         /// <summary>
@@ -40,7 +44,8 @@ namespace Voidex.Badge.Sample
 
         public void SerializeBadgeGraph()
         {
-            var json = BadgeNotificationConverter.Serialize<BadgeNotification, BadgeValue>(GlobalData.BadgeNotification, value => { return value.nodeType == NodeType.Single; });
+            var json = BadgeNotificationConverter.Serialize<BadgeNotification, BadgeValue>(GlobalData.BadgeNotification,
+                value => { return value.Value.nodeType == NodeType.Single; });
 
             Debug.Log(json);
         }
@@ -51,19 +56,11 @@ namespace Voidex.Badge.Sample
 
             foreach (var badge in badgeNotification.GetBadges())
             {
-                Debug.Log($"Badge: {badge.key} Value: {badge.badgeCount}");
-            }
-        }
-        
-        public void LogAllBadges(string keyPrefix)
-        {
-            foreach (var badge in GlobalData.BadgeNotification.GetBadgesBy(keyPrefix))
-            {
-                Debug.Log($"Badge: {badge.key} count: {badge.badgeCount} rank: {badge.value.rank}");
+                Debug.Log($"Badge: {badge.Path} Value: {badge.Value.badgeCount}");
             }
         }
     }
-    
+
 #if UNITY_EDITOR
     [UnityEditor.CustomEditor(typeof(ApplicationContext))]
     public class ApplicationContextEditor : UnityEditor.Editor
@@ -79,11 +76,6 @@ namespace Voidex.Badge.Sample
             if (GUILayout.Button("Get Badge Value"))
             {
                 myScript.GetBadgeValue(key);
-            }
-            
-            if (GUILayout.Button("Log All Badges"))
-            {
-                myScript.LogAllBadges(key);
             }
 
             if (GUILayout.Button("Serialize Badge Graph"))

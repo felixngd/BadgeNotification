@@ -3,8 +3,7 @@
 Dot Badge Notifications, also known as red dot notifications, are small icons, typically red, serving as indicators appearing on game UI elements. These simple visual alerts notify users about new content, messages, or events designed to draw the player's attention. By doing so, they play a crucial role in increasing user engagement and retention in games.
 
 ![](./imgs/in-game.jpg)
-This package allows you to create dot badge notifications for all games developed on Unity. It offers a flexible, intuitive, and easy-to-use system; this package provides a visual Badge Node tool for you to design the most complex red dot notification systems.
-
+This package allows you to create dot badge notifications for all games developed on Unity. Sample usage of the package can be found in [Sample](https://github.com/felixngd/BadgeNotification/tree/master/Assets/BadgeNotification)
 ![](./imgs/sample.gif)
 ## Test Status
 
@@ -39,15 +38,33 @@ Add the following to the dependencies block:
 ```
 ## Getting Started
 
-### Badge Graph
+### Building a Badge Notification instance
+The Badge Notification system is constructed using a Trie, a tree-like data structure that stores key-value pairs. In this context, the keys represent the paths from the root to a specific node, while the values correspond to the badge counts and a custom value.
 
+The paths example:
+```plaintext
+Root
+Root|Mails
+Root|Mails|Rewarded
+Root|Mails|System
+Root|Characters
+Root|Characters|0
+Root|Characters|0|Equip|Sword
+Root|Characters|0|Equip|Shield
+...
+```
+There are two ways to build up the Trie in the Badge Notification:
+* **Using the Badge Graph**
+* **Building a custom Trie**
 
-First, you need to create a Badge Graph, which is a tool that allows you to visually represent red dot badges on nodes by using descriptive game features or names. The Badge Graph is composed of Badge Nodes, with parent nodes representing main features and child nodes representing sub-features that are aggregated by the parent feature.
+#### Using the Badge Graph
+
+You can use the Badge Graph to represent the hierarchy of badges in a graph format. To use Badge Graph, you need to install the XNode package and add the symbol `USE_XNODE` to the Scripting Define Symbols in the Player Settings.
 
 To create a Badge Graph, right-click in the directory where you want to store the graph (.asset) file. Select `Create > BadgeNotification > Graph`. Double-click on the newly created file to open the Badge Graph design interface.
 ![](./imgs/badge-graph.png)
 
-### Designing the Badge Graph
+Designing the Badge Graph
 
 First, you need to create a Badge Root node, right-click in an empty area on the Badge Graph window and select `Voidex > Badge > Runtime > Badge Root`.
 
@@ -55,56 +72,98 @@ Create child nodes similarly by selecting `Voidex > Badge > Runtime > Badge`. En
 
 > **Note:** the key is used for manipulation at runtime, and the description is for easier reading of the graph.
 
+Use Badge Graph in code:
+```csharp
+   void InitBadgeNotification(Voidex.Badge.Runtime.BadgeGraph badgeGraph)
+   {
+        BadgeNotification = new BadgeNotification(badgeGraph);
+   }
+```
+
+#### Building a custom Trie
+```csharp
+public class BadgeNotification : BadgeNotificationBase<int>
+    {
+        // Inherits BadgeNotificationBase and write your own custom constructor to build the Trie
+        public BadgeNotification(List<string> list) : base()
+        {
+            _trieMap = new TrieMap<BadgeData<int>>();
+            foreach (var key in list)
+            {
+                var value = new BadgeData<int>
+                {
+                    badgeCount = 0,
+                    value = default, nodeType = default
+                };
+                _trieMap.Add(key, value);
+                BadgeMessaging<int>.UpdateBadge(key, value);
+            }
+        }
+    }
+```
+
 ## Initialization
 
 Badge Notification works based on the Pub/Sub model, with the state of each dot badge on the UI depending on the BadgeChangedMessage it receives. The system uses the `IPubSub<TMessage>` interface to send and receive these messages. Check the example below to see how to implement the interface using MessagePipe.
 
+**Creating a class that implements BadgeNotificationBase**
+
+You can add more functionality to the BadgeNotification class by inheriting from BadgeNotificationBase. This class is a generic class that takes a BadgeValue type as a parameter. The BadgeValue type is a struct that contains the badge's key and value. You can create a custom BadgeValue type to store additional information about the badge.
+
+```csharp
+    public class BadgeNotification : BadgeNotificationBase<BadgeValue>
+    {
+        public BadgeNotification(BadgeGraph badgeGraph) : base(badgeGraph)
+        {
+        }
+    }
+```
+
 **Using MessagePipe**
 
 ```csharp
-public class MessagePipeMessaging : IPubSub<BadgeChangedMessage>
-{
-    private readonly IPublisher<string, BadgeChangedMessage> _publisher;
-    private readonly ISubscriber<string, BadgeChangedMessage> _subscriber;
-    
-    public MessagePipeMessaging()
+public class MessagePipeMessaging : IPubSub<BadgeChangedMessage<BadgeValue>>
     {
-        var builder = new BuiltinContainerBuilder();
-        builder.AddMessagePipe(o => o.EnableCaptureStackTrace = true);
-        builder.AddMessageBroker<string, BadgeChangedMessage>();
+        public readonly IPublisher<string, BadgeChangedMessage<BadgeValue>> _publisher;
+        public readonly ISubscriber<string, BadgeChangedMessage<BadgeValue>> _subscriber;
+        public MessagePipeMessaging()
+        {
+            var builder = new BuiltinContainerBuilder();
+            builder.AddMessagePipe(o => o.EnableCaptureStackTrace = true);
+            builder.AddMessageBroker<string, BadgeChangedMessage<BadgeValue>>();
 
-        var provider = builder.BuildServiceProvider();
-        GlobalMessagePipe.SetProvider(provider);
+            var provider = builder.BuildServiceProvider();
+            GlobalMessagePipe.SetProvider(provider);
 
-        _publisher = GlobalMessagePipe.GetPublisher<string, BadgeChangedMessage>();
-        _subscriber = GlobalMessagePipe.GetSubscriber<string, BadgeChangedMessage>();
+            _publisher = GlobalMessagePipe.GetPublisher<string, BadgeChangedMessage<BadgeValue>>();
+            _subscriber = GlobalMessagePipe.GetSubscriber<string, BadgeChangedMessage<BadgeValue>>();
+        }
+        
+        public void Publish(BadgeChangedMessage<BadgeValue> topic)
+        {
+            _publisher.Publish(topic.key, topic);
+        }
+
+        public IDisposable Subscribe(string key, Action<BadgeChangedMessage<BadgeValue>> callback)
+        {
+            return _subscriber.Subscribe(key, callback);
+        }
     }
-
-    public void Publish(BadgeChangedMessage topic)
-    {
-        _publisher.Publish(topic.key, topic);
-    }
-
-    public IDisposable Subscribe(string key, Action<BadgeChangedMessage> callback)
-    {
-        return _subscriber.Subscribe(key, callback);
-    }
-}
 ```
 Note that it must be initialized first for the system to operate.
 ```csharp
-IPubSub<BadgeChangedMessage> pubSub = new MessagePipeMessaging();
-_badgeMessaging.Initialize(pubSub);
+IPubSub<BadgeChangedMessage<BadgeValue>> pubSub = new MessagePipeMessaging();
+BadgeMessaging<BadgeValue>.Initialize(pubSub);
 ```
 Next, initialize the Badge Notification service.
 ```cs
-_badgeNotification = new BadgeNotification();
-_badgeNotification.Initialize(badgeGraph);
+_badgeNotification = new BadgeNotification(badgeGraph);
 ```
 ### Displaying dot badge on UI
 The package does not specifically implement on any UI system, so you can implement using your UI system. These UI elements need to register to receive BadgeChangedMessage to display.
 ```cs
-_disposable = GlobalMessaging<BadgeChangedMessage>.Subscribe(badgeKey, OnBadgeChanged);
+ var messagePipe = SampleBadgeMessaging.GetMessagingService<MessagePipeMessaging>();
+ _disposable = messagePipe.Subscribe(key, OnBadgeChanged, new ChangedValueFilter<BadgeChangedMessage<BadgeValue>>());
 ```
 See the example of implementing a badge item on the UI below: 
 * [DynamicBadgeItem](https://github.com/felixngd/BadgeNotification/blob/master/Assets/BadgeNotification/Scripts/Concretes/DynamicBadgeItem.cs) 

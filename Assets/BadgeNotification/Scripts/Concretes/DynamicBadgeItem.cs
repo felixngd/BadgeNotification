@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Text;
 using UnityEngine;
 using Voidex.Badge.Extender;
 using Voidex.Badge.Runtime;
@@ -30,7 +31,7 @@ namespace Voidex.Badge.Sample
             if (message.key.Equals(key))
             {
                 if(message.badgeCount > 1){
-                    text.text = message.value.ToString();
+                    text.SetText(message.badgeCount);
                     text.gameObject.SetActive(true);
                     gameObject.SetActive(true);
                 }else if(message.badgeCount == 1){

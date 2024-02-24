@@ -13,7 +13,7 @@ namespace Voidex.Badge.Sample
 
         public Character Character { get; private set; }
 
-        private void Start()
+        private void Awake()
         {
             Initialize();
             upgradeButton.onClick.AddListener(UpgradeCharacter);

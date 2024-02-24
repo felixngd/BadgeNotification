@@ -22,7 +22,7 @@ namespace BadgeNotification.Trie.Tests
                     {
                         trieMap.Add(keys[i], new BadgeData<int>
                         {
-                            key = keys[i],
+                            //key = keys[i],
                             value = i,
                             badgeCount = i,
                         });
@@ -60,7 +60,7 @@ namespace BadgeNotification.Trie.Tests
             {
                 trieMap.Add(keys[i], new BadgeData<int>
                 {
-                    key = keys[i],
+                    //key = keys[i],
                     value = i,
                     badgeCount = i,
                 });
@@ -90,7 +90,7 @@ namespace BadgeNotification.Trie.Tests
             {
                 trieMap.Add(keys[i], new BadgeData<int>
                 {
-                    key = keys[i],
+                    //key = keys[i],
                     value = i,
                     badgeCount = i,
                 });
@@ -120,7 +120,7 @@ namespace BadgeNotification.Trie.Tests
             {
                 trieMap.Add(keys[i], new BadgeData<int>
                 {
-                    key = keys[i],
+                    //key = keys[i],
                     value = i,
                     badgeCount = i,
                 });
@@ -147,7 +147,7 @@ namespace BadgeNotification.Trie.Tests
             {
                 trieMap.Add(keys[i], new BadgeData<int>
                 {
-                    key = keys[i],
+                    //key = keys[i],
                     value = i,
                     badgeCount = i,
                 });
@@ -178,7 +178,7 @@ namespace BadgeNotification.Trie.Tests
             {
                 trieMap.Add(keys[i], new BadgeData<int>
                 {
-                    key = keys[i],
+                    //key = keys[i],
                     value = i,
                     badgeCount = i,
                 });
@@ -188,7 +188,7 @@ namespace BadgeNotification.Trie.Tests
                 {
                     trieMap.Update(keys[0], new BadgeData<int>()
                     {
-                        value = 9999, badgeCount = 9, key = keys[0]
+                        value = 9999, badgeCount = 9, //key = keys[0]
                     });
                 })
                 .WarmupCount(10)
@@ -208,7 +208,7 @@ namespace BadgeNotification.Trie.Tests
             {
                 trieMap.Add(keys[i], new BadgeData<int>
                 {
-                    key = keys[i],
+                    //key = keys[i],
                     value = i,
                     badgeCount = i,
                 });
@@ -220,7 +220,7 @@ namespace BadgeNotification.Trie.Tests
                     {
                         trieMap.Update(keys[i], new BadgeData<int>()
                         {
-                            value = 9999, badgeCount = 9, key = keys[i]
+                            value = 9999, badgeCount = 9, //key = keys[i]
                         });
                     }
                 })

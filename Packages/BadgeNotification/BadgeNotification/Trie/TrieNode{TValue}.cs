@@ -26,6 +26,9 @@ namespace Voidex.Trie
 
         private bool hasValue;
         private TValue _value;
+        
+        public new TrieNode<TValue> Parent => base.Parent as TrieNode<TValue>;
+        
 
         #endregion
 
@@ -36,6 +39,11 @@ namespace Voidex.Trie
         /// </summary>
         public TrieNode(string word)
             : base(word)
+        {
+        }
+        
+        public TrieNode(string word, TrieNodeBase parent)
+            : base(word, parent)
         {
         }
 

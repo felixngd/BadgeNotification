@@ -38,7 +38,7 @@ namespace Voidex.Badge.Sample
         {
             _quest.isCompleted = true;
             var key = GetBadgeKeyByQuest(_quest);
-            GlobalData.BadgeNotification.UpdateBadge(key, _quest.isCompleted ? 1 : 0);
+            GlobalData.BadgeNotification.UpdateBadgeCount(key, _quest.isCompleted ? 1 : 0);
             questText.text = $"Quest {_quest.id} is completed, click to claim the reward";
             button.gameObject.SetActive(false);
         }
@@ -49,7 +49,7 @@ namespace Voidex.Badge.Sample
             if (_quest.isCompleted)
             {
                 var key = GetBadgeKeyByQuest(_quest);
-                GlobalData.BadgeNotification.UpdateBadge(key, -1);
+                GlobalData.BadgeNotification.UpdateBadgeCount(key, -1);
                 questText.text = $"Quest {_quest.id} is completed and claimed the reward";
                 
                 Debug.Log("key: " + key);

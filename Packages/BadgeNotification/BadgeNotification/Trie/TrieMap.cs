@@ -27,7 +27,12 @@ namespace Voidex.Trie
         /// </summary>
         public TrieMap()
         {
-            rootTrieNode = new TrieNode<TValue>(Const.ROOT);
+            rootTrieNode = new TrieNode<TValue>(Const.ROOT, null);
+        }
+        
+        public TrieMap(string rootWord)
+        {
+            rootTrieNode = new TrieNode<TValue>(rootWord, null);
         }
 
         #endregion
@@ -72,6 +77,11 @@ namespace Voidex.Trie
         public IEnumerable<TValue> Values()
         {
             return ValuesBy(Const.ROOT);
+        }
+        
+        public IEnumerable<TrieNode<TValue>> TrieNodes()
+        {
+            return TraverseLeafNodes(rootTrieNode);
         }
 
         /// <summary>
@@ -145,23 +155,24 @@ namespace Voidex.Trie
         /// Adds TValue item for key to TrieMap.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Add(string key, TValue value)
+        public void Add(string path, TValue value)
         {
             var trieNode = rootTrieNode;
-            var words = key.Split(Const.SEPARATOR);
+            var words = path.Split(Const.SEPARATOR);
             foreach (var word in words)
             {
                 var child = trieNode.GetChild(word);
                 if (child == null)
                 {
-                    child = new TrieNode<TValue>(word);
+                    child = new TrieNode<TValue>(word, trieNode);
                     trieNode.SetChild(child);
                 }
-
+            
                 trieNode = child;
             }
-
+            
             trieNode.Value = value;
+            trieNode.Path = path;
         }
 
         /// <summary>

@@ -1,3 +1,4 @@
+#if USE_XNODE
 using System;
 using System.Collections.Generic;
 using UnityEditor;
@@ -55,3 +56,5 @@ namespace Voidex.Badge.Editor
 #endif
     }
 }
+
+#endif

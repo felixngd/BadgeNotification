@@ -1,6 +1,4 @@
-#if ODIN_INSPECTOR
-using Sirenix.OdinInspector;
-#endif
+#if USE_XNODE
 using UnityEngine;
 using Voidex.Trie;
 
@@ -12,7 +10,7 @@ namespace Voidex.Badge.Runtime
 #if UNITY_EDITOR
         public TrieMap<BadgeData<int>> trieMap = new TrieMap<BadgeData<int>>();
 #if ODIN_INSPECTOR
-        [Button]
+        [Sirenix.OdinInspector.Button]
 #endif
         private void LogData()
         {
@@ -21,7 +19,7 @@ namespace Voidex.Badge.Runtime
                 var key = node.GetValue(null).ToString();
                 trieMap.Add(key, new BadgeData<int>
                 {
-                    key = key,
+                    //key = key,
                     value = 0,
                     badgeCount = 0,
                 });
@@ -37,3 +35,4 @@ namespace Voidex.Badge.Runtime
 #endif
     }
 }
+#endif

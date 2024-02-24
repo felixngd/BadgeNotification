@@ -1,3 +1,5 @@
+using Cysharp.Text;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Voidex.Badge.Extender;
 using Voidex.Badge.Runtime;
@@ -9,11 +11,11 @@ namespace Voidex.Badge.Sample
     {
         [SerializeField] private TMPro.TextMeshProUGUI text;
 
-        private void OnEnable()
+        private async void OnEnable()
         {
             var key = badgeNode.GetValue(null).ToString();
             var value = GlobalData.BadgeNotification.GetBadgeCount(key);
-            text.text = value.ToString();
+            text.SetText(value);
             gameObject.SetActive(value > 0);
         }
 

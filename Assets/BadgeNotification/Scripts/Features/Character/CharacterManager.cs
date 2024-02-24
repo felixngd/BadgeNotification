@@ -31,11 +31,11 @@ namespace Voidex.Badge.Sample
                 var prefix = "Root|Characters";
                 var postfix = $"Equip|{itemDataItem.name}";
                 var countBySlotType = GlobalData.GameResources.Items.Count(x => x.slotType == itemDataItem.slotType);
-                Debug.Log($"countBySlotType: {countBySlotType} - {itemDataItem.slotType}");
                 GlobalData.BadgeNotification.SetBadgesValue(prefix, data =>
                 {
                     data.badgeCount = countBySlotType;
-                }, node => node.Value.key.EndsWith(postfix));
+                }, node => node.Path.EndsWith(postfix));
+                
             }
             //init characters
             foreach (var item in characterData.characters)

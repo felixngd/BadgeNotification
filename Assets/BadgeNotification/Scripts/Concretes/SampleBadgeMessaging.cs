@@ -16,10 +16,5 @@ namespace Voidex.Badge.Sample
         {
             return BadgeMessaging<BadgeValue>.GetMessagingService<T>();
         }
-
-        public static void UpdateBadge(BadgeData<BadgeValue> badgeData)
-        {
-            BadgeMessaging<BadgeValue>.UpdateBadge(badgeData);
-        }
     }
 }

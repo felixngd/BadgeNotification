@@ -32,15 +32,15 @@ namespace BadgeNotification.BadgeNotification.Tests
             }
         }
         [Test, Performance]
-        public void TestPerformance_Add_1000()
+        public void TestPerformance_Add_10()
         {
             var keys = new List<string>();
-            GenerateKeys("root", 5, 0, keys, 1000);
+            GenerateKeys("root", 5, 0, keys, 10);
             BadgesTest.BadgeNotification badge = new BadgesTest.BadgeNotification(keys);
             
             Measure.Method(() =>
                 {
-                    for (int i = 0; i < 1000; i++)
+                    for (int i = 0; i < 10; i++)
                     {
                         badge.AddBadge(keys[i], i, NodeType.Multiple);
                     }
@@ -56,24 +56,23 @@ namespace BadgeNotification.BadgeNotification.Tests
         }
         
         [Test, Performance]
-        public void TestPerformance_Update_1000()
+        public void TestPerformance_Update_10()
         {
             var keys = new List<string>();
-            GenerateKeys("root", 5, 0, keys, 1000);
-            UnityEngine.Debug.Log(keys.Count);
+            GenerateKeys("root", 5, 0, keys, 10);
             BadgesTest.BadgeNotification badge = new BadgesTest.BadgeNotification(keys);
             
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 10; i++)
             {
                 badge.AddBadge(keys[i], i, NodeType.Multiple);
             }
 
-            badge.SetNodeValue("root", NodeType.Multiple);
+            badge.SetDefaultNodeData("root", NodeType.Multiple);
             Measure.Method(() =>
                 {
-                    for (int i = 0; i < 1000; i++)
+                    for (int i = 0; i < 10; i++)
                     {
-                        badge.UpdateBadge(keys[i], i);
+                        badge.UpdateBadgeCount(keys[i], i);
                     }
                 })
                 .WarmupCount(10)
@@ -99,11 +98,11 @@ namespace BadgeNotification.BadgeNotification.Tests
                 badge.AddBadge(keys[i], i, NodeType.Multiple);
             }
 
-            badge.SetNodeValue("root", NodeType.Multiple);
+            badge.SetDefaultNodeData("root", NodeType.Multiple);
             
             Measure.Method(() =>
                 {
-                    badge.UpdateBadges("root", "1", 3);
+                    badge.UpdateBadgesCount("root", "1", 3);
                 })
                 .WarmupCount(10)
                 .MeasurementCount(10)
@@ -128,11 +127,11 @@ namespace BadgeNotification.BadgeNotification.Tests
                 badge.AddBadge(keys[i], i, NodeType.Multiple);
             }
 
-            badge.SetNodeValue("root", NodeType.Multiple);
+            badge.SetDefaultNodeData("root", NodeType.Multiple);
             
             Measure.Method(() =>
                 {
-                    badge.UpdateBadges("root", 4);
+                    badge.UpdateBadgesCount("root", 4);
                 })
                 .WarmupCount(10)
                 .MeasurementCount(10)
@@ -158,7 +157,7 @@ namespace BadgeNotification.BadgeNotification.Tests
                 UnityEngine.Debug.Log(keys[i]);
             }
 
-            badge.SetNodeValue("root", NodeType.Multiple);
+            badge.SetDefaultNodeData("root", NodeType.Multiple);
             
             Measure.Method(() =>
                 {

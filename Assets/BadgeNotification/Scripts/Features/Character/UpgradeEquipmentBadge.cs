@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Text;
 using UnityEngine;
 using Voidex.Badge.Extender;
 using Voidex.Badge.Runtime;
@@ -43,14 +44,14 @@ namespace Voidex.Badge.Sample
             if (message.key.Equals(_key))
             {
                 if (itemSlot.Item == null) return;
-                if (!itemSlot.Item.isEquipped.Item2)
+                if (!itemSlot.Item.isEquipped.equipped)
                 {
                     gameObject.SetActive(false);
                 }
                 else
                 {
                     gameObject.SetActive(message.badgeCount > 0);
-                    badgeText.text = message.value.ToString();
+                    badgeText.SetText(message.badgeCount);
                 }
             }
         }

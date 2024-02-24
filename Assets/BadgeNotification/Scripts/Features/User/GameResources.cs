@@ -54,23 +54,13 @@ namespace Voidex.Badge.Sample.Features.User
         public ObservableList<Item> Items = new ObservableList<Item>();
         
         public ObservableList<Character> Characters = new ObservableList<Character>();
-
-        public Item UpgradeItem(int id)
+        
+        public bool Upgrade(Item item)
         {
-            Item myItem = null;
-            foreach (var item in Items)
-            {
-                if (item.id == id)
-                {
-                    myItem = item;
-                }
-            }
-
-            if (myItem == null) return null;
-            if (Coin < 10) return null;
-            Coin -= 10;
-            myItem.level++;
-            return myItem;
+            if (Coin < item.upgradeCost) return false;
+            Coin -= item.upgradeCost;
+            item.level++;
+            return true;
         }
         
         public int CountItems(SlotType slotType)

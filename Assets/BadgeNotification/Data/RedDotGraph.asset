@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0|Equip|Horse
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 984, y: -216}
   ports:
     keys:
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1|UpC
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 520, y: 472}
   ports:
     keys:
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0|Equip|Helmet
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 984, y: 8}
   ports:
     keys:
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Quests
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: -120, y: 408}
   ports:
     keys:
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1|Equip|Accessory
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 1224, y: 1368}
   ports:
     keys:
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Mails|Rewarded
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 168, y: -792}
   ports:
     keys:
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0|Equip|Sword
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 984, y: -440}
   ports:
     keys:
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0|Equip|Shield
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 1224, y: -216}
   ports:
     keys:
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1|UpE|Horse
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 984, y: 472}
   ports:
     keys:
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0|UpC
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 520, y: -296}
   ports:
     keys:
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1|Equip
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 520, y: 680}
   ports:
     keys:
@@ -533,7 +533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0|UpE
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 520, y: -520}
   ports:
     keys:
@@ -596,7 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0|Equip|Armor
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 1224, y: -440}
   ports:
     keys:
@@ -641,7 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1|UpE|Helmet
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 1224, y: 472}
   ports:
     keys:
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1|UpE|Accessory
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 1224, y: 696}
   ports:
     keys:
@@ -731,7 +731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1|UpE
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 520, y: 264}
   ports:
     keys:
@@ -794,7 +794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Mails|System
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 168, y: -616}
   ports:
     keys:
@@ -839,7 +839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: -120, y: -24}
   ports:
     keys:
@@ -890,7 +890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1|UpE|Shield
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 1224, y: 248}
   ports:
     keys:
@@ -937,7 +937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe15a4b155354641ba6ae9c571a9d3d, type: 3}
   m_Name: Badge Root
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: -472, y: -40}
   ports:
     keys:
@@ -974,7 +974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Quests|Daily
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 152, y: 312}
   ports:
     keys:
@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1|Equip|Horse
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 984, y: 1144}
   ports:
     keys:
@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1|Equip|Armor
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 984, y: 1368}
   ports:
     keys:
@@ -1162,7 +1162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1|Equip|Helmet
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 1224, y: 1144}
   ports:
     keys:
@@ -1207,7 +1207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1|UpE|Sword
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 984, y: 248}
   ports:
     keys:
@@ -1252,7 +1252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0|UpE|Sword
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 984, y: -1112}
   ports:
     keys:
@@ -1297,7 +1297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0|UpE|Shield
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 1224, y: -1112}
   ports:
     keys:
@@ -1344,7 +1344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0|Equip|Accessory
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 1224, y: 8}
   ports:
     keys:
@@ -1389,7 +1389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1|Equip|Shield
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 1224, y: 920}
   ports:
     keys:
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 185.97072, y: -281.01025}
   ports:
     keys:
@@ -1488,7 +1488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0|UpE|Horse
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 984, y: -888}
   ports:
     keys:
@@ -1533,7 +1533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0|Equip
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 520, y: -72}
   ports:
     keys:
@@ -1596,7 +1596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 200, y: 24}
   ports:
     keys:
@@ -1650,7 +1650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1|UpE|Armor
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 984, y: 696}
   ports:
     keys:
@@ -1697,7 +1697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0|UpE|Accessory
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 1224, y: -664}
   ports:
     keys:
@@ -1742,7 +1742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0|UpE|Armor
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 984, y: -664}
   ports:
     keys:
@@ -1789,7 +1789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|1|Equip|Sword
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 984, y: 920}
   ports:
     keys:
@@ -1834,7 +1834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Mails
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: -104, y: -728}
   ports:
     keys:
@@ -1885,7 +1885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Characters|0|UpE|Helmet
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 1224, y: -888}
   ports:
     keys:
@@ -1930,7 +1930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9176248362844a58e6709e39d773d3, type: 3}
   m_Name: Root|Quests|Season
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
+  graph: {fileID: 0}
   position: {x: 152, y: 520}
   ports:
     keys:

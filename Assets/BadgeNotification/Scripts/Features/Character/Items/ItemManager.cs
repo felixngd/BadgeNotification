@@ -46,7 +46,9 @@ namespace Voidex.Badge.Sample
                 var view = itemObject.GetComponent<ItemView>();
                 view.Initialize(item);
                 _itemViews.Add(view);
+                
             }
+            
         }
 
         public void AddItem(Item item)

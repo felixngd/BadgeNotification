@@ -19,7 +19,7 @@ namespace Voidex.Badge.Sample
         public BadgeNode dailyQuestBadgeNode;
         public BadgeNode seasonQuestBadgeNode;
         
-        private void Start()
+        private void Awake()
         {
             Initialize();   
             Debug.Log("QuestManager initialized");
@@ -38,7 +38,7 @@ namespace Voidex.Badge.Sample
                 var badgeItem = questObject.GetComponentInChildren<DynamicBadgeItem>();
                 var key = $"{dailyQuestBadgeNode.GetValue(null)}|{quest.id}";
                 badgeItem.Subscribe(key);
-                GlobalData.BadgeNotification.AddBadge(key, quest.isCompleted ? 1 : 0);
+                GlobalData.BadgeNotification.AddBadge(key, quest.isCompleted ? 1 : 0, NodeType.Single);
             }
             
             foreach (var quest in _seasonQuests)
@@ -48,7 +48,7 @@ namespace Voidex.Badge.Sample
                 var badgeItem = questObject.GetComponentInChildren<DynamicBadgeItem>();
                 var key = $"{seasonQuestBadgeNode.GetValue(null)}|{quest.id}";
                 badgeItem.Subscribe(key);
-                GlobalData.BadgeNotification.AddBadge(key, quest.isCompleted ? 1 : 0);
+                GlobalData.BadgeNotification.AddBadge(key, quest.isCompleted ? 1 : 0, NodeType.Single);
             }
         }
     }

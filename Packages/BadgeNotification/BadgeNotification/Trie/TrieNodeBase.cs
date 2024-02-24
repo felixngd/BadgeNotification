@@ -13,7 +13,11 @@ namespace Voidex.Trie
         /// <summary>
         /// The word for the TrieNode.
         /// </summary>
-        public string Word { get; private set; }
+        public string Word { get; }
+
+        public string Path { get; set; }
+        
+        public TrieNodeBase Parent { get;}
 
         /// <summary>
         /// Children word->TrieNode map.
@@ -34,6 +38,13 @@ namespace Voidex.Trie
             _children = new Dictionary<string, TrieNodeBase>();
         }
 
+        internal TrieNodeBase(string word, TrieNodeBase parent)
+        {
+            Word = word;
+            Parent = parent;
+            _children = new Dictionary<string, TrieNodeBase>();
+        }
+
         #endregion
 
         #region methods
@@ -49,39 +60,71 @@ namespace Voidex.Trie
             return trieNode;
         }
 
+        // internal TrieNodeBase GetTrieNodeInner(string prefix)
+        // {
+        //     TrieNodeBase trieNode = this;
+        //     ReadOnlySpan<char> remaining = prefix.AsSpan();
+        //
+        //     while (!remaining.IsEmpty)
+        //     {
+        //         int separatorIndex = remaining.IndexOf(Const.SEPARATOR);
+        //         ReadOnlySpan<char> word;
+        //
+        //         if (separatorIndex == -1)
+        //         {
+        //             word = remaining;
+        //             remaining = ReadOnlySpan<char>.Empty;
+        //         }
+        //         else
+        //         {
+        //             word = remaining.Slice(0, separatorIndex);
+        //             remaining = remaining.Slice(separatorIndex + 1);
+        //         }
+        //
+        //         if (word.IsEmpty || word.IsWhiteSpace())
+        //         {
+        //             continue;
+        //         }
+        //
+        //         trieNode = trieNode.GetChildInner(word.ToString());
+        //         if (trieNode == null)
+        //         {
+        //             break;
+        //         }
+        //     }
+        //
+        //     // if (trieNode == null && Path.Equals(prefix))
+        //     // {
+        //     //     return this;
+        //     // }
+        //
+        //     return trieNode;
+        // }
+
         internal TrieNodeBase GetTrieNodeInner(string prefix)
         {
             TrieNodeBase trieNode = this;
-            ReadOnlySpan<char> remaining = prefix.AsSpan();
-            
-            while (!remaining.IsEmpty)
+            int start = 0;
+            int end = 0;
+        
+            while (end <= prefix.Length)
             {
-                int separatorIndex = remaining.IndexOf(Const.SEPARATOR);
-                ReadOnlySpan<char> word;
-            
-                if (separatorIndex == -1)
+                if (end == prefix.Length || prefix[end] == Const.SEPARATOR)
                 {
-                    word = remaining;
-                    remaining = ReadOnlySpan<char>.Empty;
+                    if (end != start)
+                    {
+                        string word = prefix.Substring(start, end - start);
+                        trieNode = trieNode.GetChildInner(word);
+                        if (trieNode == null)
+                        {
+                            break;
+                        }
+                    }
+                    start = end + 1;
                 }
-                else
-                {
-                    word = remaining.Slice(0, separatorIndex);
-                    remaining = remaining.Slice(separatorIndex + 1);
-                }
-            
-                if (word.IsEmpty || word.IsWhiteSpace())
-                {
-                    continue;
-                }
-                
-                trieNode = trieNode.GetChildInner(word.ToString());
-                if (trieNode == null)
-                {
-                    break;
-                }
+                end++;
             }
-            
+        
             return trieNode;
         }
 
@@ -111,12 +154,11 @@ namespace Voidex.Trie
         {
             return Word == other.Word;
         }
-        
+
         public bool HasChildren()
         {
             return _children.Count > 0;
         }
-
 
         #endregion
 

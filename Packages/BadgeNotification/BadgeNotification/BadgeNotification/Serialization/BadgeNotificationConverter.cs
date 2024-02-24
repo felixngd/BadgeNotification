@@ -6,7 +6,7 @@ namespace Voidex.Badge.Runtime.Serialization
 {
     public static class BadgeNotificationConverter
     {
-        public static string Serialize<TBadgeNotification, TValue>(TBadgeNotification trieMap, Predicate<BadgeData<TValue>> condition) where TBadgeNotification : BadgeNotificationBase<TValue> where TValue : struct
+        public static string Serialize<TBadgeNotification, TValue>(TBadgeNotification trieMap, Predicate<TrieNode<BadgeData<TValue>>> condition) where TBadgeNotification : BadgeNotificationBase<TValue> where TValue : struct
         {
             var serializableTrieMap = ConvertToSerializable(trieMap, condition);
             return JsonConvert.SerializeObject(serializableTrieMap);
@@ -28,10 +28,10 @@ namespace Voidex.Badge.Runtime.Serialization
             return trieMap;
         }
         
-        private static SerializableBadgeTrieMap<TValue> ConvertToSerializable<TValue>(BadgeNotificationBase<TValue> trieMap, Predicate<BadgeData<TValue>> condition) where TValue : struct
+        private static SerializableBadgeTrieMap<TValue> ConvertToSerializable<TValue>(BadgeNotificationBase<TValue> trieMap, Predicate<TrieNode<BadgeData<TValue>>> condition) where TValue : struct
         {
             SerializableBadgeTrieMap<TValue> serializableBadgeTrieMap = new SerializableBadgeTrieMap<TValue>();
-            var values = trieMap._trieMap.Values();
+            var values = trieMap._trieMap.TrieNodes();
             foreach (var value in values)
             {
                 if(condition!=null && !condition(value)) continue;

@@ -23,9 +23,9 @@ namespace Voidex.Badge.Runtime
         /// get all badges
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<BadgeData<TValue>> GetBadges()
+        public IEnumerable<TrieNode<BadgeData<TValue>>> GetBadges()
         {
-            return _trieMap.Values();
+            return _trieMap.TrieNodes();
         }
 
         public IEnumerable<BadgeData<TValue>> GetBadgesBy(string keyPrefix)
@@ -43,9 +43,12 @@ namespace Voidex.Badge.Runtime
             return _trieMap.GetTrieNode(keyPrefix);
         }
 
+#if USE_XNODE
         protected BadgeNotificationBase(BadgeGraph badgeGraph)
         {
             _trieMap = new TrieMap<BadgeData<TValue>>();
+            SetDefaultNodeData(Const.ROOT);
+
             foreach (var node in badgeGraph.nodes)
             {
                 var key = node.GetValue(null).ToString();
@@ -53,53 +56,56 @@ namespace Voidex.Badge.Runtime
                 {
                     var value = new BadgeData<TValue>
                     {
-                        key = key, badgeCount = 0,
+                        badgeCount = 0,
                         value = default,
                         nodeType = badgeNode.nodeType
                     };
                     _trieMap.Add(key, value);
-                    BadgeMessaging<TValue>.UpdateBadge(value);
+                    BadgeMessaging<TValue>.UpdateBadge(key, value);
                 }
                 else
                 {
+                    //case of Root node in the graph
                     var value = new BadgeData<TValue>
                     {
-                        key = key,
-                        value = default, badgeCount = 0
+                        badgeCount = 0,
+                        value = default,
+                        nodeType = NodeType.Multiple
                     };
                     _trieMap.Add(key, value);
-                    BadgeMessaging<TValue>.UpdateBadge(value);
+                    BadgeMessaging<TValue>.UpdateBadge(key, value);
                 }
             }
         }
+#endif
 
         protected BadgeNotificationBase()
         {
             _trieMap = new TrieMap<BadgeData<TValue>>();
         }
-        
+
         /// <summary>
-        /// Set value for a node by key in the trie.
+        /// Set data for a node by key in the trie, where badgeCount is 0 and value is default.
         /// </summary>
         /// <param name="key"></param>
         /// <param name="nodeType"></param>
         /// <returns></returns>
-        public bool SetNodeValue(string key, NodeType nodeType = NodeType.Multiple)
+        public bool SetDefaultNodeData(string key, NodeType nodeType = NodeType.Multiple)
         {
             var node = _trieMap.GetTrieNode(key);
             if (node.Value == null)
             {
                 var value = new BadgeData<TValue>
                 {
-                    key = key, badgeCount = 0,
+                    badgeCount = 0,
                     value = default,
                     nodeType = nodeType
                 };
-                _trieMap.Add(key, value);
-                BadgeMessaging<TValue>.UpdateBadge(value);
+                node.Value = value;
+                BadgeMessaging<TValue>.UpdateBadge(key, value);
                 return true;
             }
-            
+
             return false;
         }
 
@@ -135,25 +141,26 @@ namespace Voidex.Badge.Runtime
 
                     fullPathBuilder.Append(pathSpan);
 
-                    string path = pathSpan.ToString(); // Convert span to string for Trie operations
-                    if (!node.HasChild(path))
+                    string word = pathSpan.ToString(); // Convert span to string for Trie operations
+                    if (!node.HasChild(word))
                     {
-                        var child = new TrieNode<BadgeData<TValue>>(path);
+                        var path = fullPathBuilder.ToString(); // Minimize ToString calls
+                        var child = new TrieNode<BadgeData<TValue>>(word, node);
                         child.Value = new BadgeData<TValue>
                         {
-                            key = fullPathBuilder.ToString(), // Minimize ToString calls
                             value = default, badgeCount = 0,
                             nodeType = nodeType
                         };
+                        child.Path = path;
                         node.SetChild(child);
                     }
 
-                    node = node.GetChild(path);
+                    node = node.GetChild(word);
                     node.Value.badgeCount += value;
-                    _trieMap.Add(node.Value.key, node.Value);
+                    _trieMap.Add(node.Path, node.Value);
 
                     //notify ui
-                    BadgeMessaging<TValue>.UpdateBadge(node.Value);
+                    BadgeMessaging<TValue>.UpdateBadge(key, node.Value);
                 }
             }
         }
@@ -162,15 +169,15 @@ namespace Voidex.Badge.Runtime
         /// Add badge by BadgeData
         /// </summary>
         /// <param name="badgeData"></param>
-        public void AddBadge(BadgeData<TValue> badgeData)
+        public void AddBadge(TrieNode<BadgeData<TValue>> badgeData)
         {
-            if (_trieMap.HasKey(badgeData.key)) return;
+            if (_trieMap.HasKey(badgeData.Path)) return;
 
             var node = _trieMap.GetRootTrieNode();
             if (node.Value != null)
-                node.Value.badgeCount += badgeData.badgeCount;
+                node.Value.badgeCount += badgeData.Value.badgeCount;
 
-            ReadOnlySpan<char> keySpan = badgeData.key.AsSpan();
+            ReadOnlySpan<char> keySpan = badgeData.Path.AsSpan();
             var fullPathBuilder = ZString.CreateStringBuilder();
             int start = 0;
 
@@ -188,25 +195,29 @@ namespace Voidex.Badge.Runtime
 
                     fullPathBuilder.Append(pathSpan);
 
-                    string path = pathSpan.ToString(); // Convert span to string for Trie operations
-                    if (!node.HasChild(path))
+                    string word = pathSpan.ToString(); // Convert span to string for Trie operations
+                    string path = fullPathBuilder.ToString(); // Minimize ToString calls
+
+                    if (!node.HasChild(word))
                     {
-                        var child = new TrieNode<BadgeData<TValue>>(path);
-                        child.Value = new BadgeData<TValue>
+                        var child = new TrieNode<BadgeData<TValue>>(word, node)
                         {
-                            key = fullPathBuilder.ToString(), // Minimize ToString calls
-                            value = badgeData.value, badgeCount = 0,
-                            nodeType = badgeData.nodeType
+                            Value = new BadgeData<TValue>
+                            {
+                                value = badgeData.Value.value, badgeCount = 0,
+                                nodeType = badgeData.Value.nodeType
+                            },
+                            Path = path
                         };
                         node.SetChild(child);
                     }
 
-                    node = node.GetChild(path);
-                    node.Value.badgeCount += badgeData.badgeCount;
-                    _trieMap.Add(node.Value.key, node.Value);
+                    node = node.GetChild(word);
+                    node.Value.badgeCount += badgeData.Value.badgeCount;
+                    _trieMap.Add(node.Path, node.Value);
 
                     //notify ui
-                    BadgeMessaging<TValue>.UpdateBadge(node.Value);
+                    BadgeMessaging<TValue>.UpdateBadge(path, node.Value);
                 }
             }
         }
@@ -218,7 +229,7 @@ namespace Voidex.Badge.Runtime
         /// </summary>
         /// <param name="key"></param>
         /// <param name="delta"></param>
-        public void UpdateBadge(string key, int delta)
+        public void UpdateBadgeCount(string key, int delta)
         {
             var targetNode = _trieMap.GetTrieNode(key);
             if (targetNode == null)
@@ -232,8 +243,36 @@ namespace Voidex.Badge.Runtime
             }
 
             targetNode.Value.badgeCount += delta;
-            UpdateParents(key);
-            BadgeMessaging<TValue>.UpdateBadge(targetNode.Value);
+            BadgeMessaging<TValue>.UpdateBadge(key, targetNode.Value);
+
+            var node = targetNode.Parent;
+
+            while (node != null)
+            {
+                int sum = 0;
+                foreach (var child in node.GetChildren())
+                {
+                    if (child.Value.nodeType == NodeType.Multiple)
+                    {
+                        sum += child.Value.badgeCount;
+                    }
+                    else if (child.Value.nodeType == NodeType.Single)
+                    {
+                        sum += child.Value.badgeCount > 0 ? 1 : 0;
+                    }
+                }
+
+                //stop if the node is root
+                if (node.Value == null)
+                {
+                    break;
+                }
+
+                node.Value.badgeCount = sum;
+                BadgeMessaging<TValue>.UpdateBadge(node.Path, node.Value);
+
+                node = node.Parent;
+            }
         }
 
         /// <summary>
@@ -241,14 +280,14 @@ namespace Voidex.Badge.Runtime
         /// </summary>
         /// <param name="keyPrefix">The prefix of the badge key.</param>
         /// <param name="delta">The amount to change the badge value by.</param>
-        public void UpdateBadges(string keyPrefix, int delta)
+        public void UpdateBadgesCount(string keyPrefix, int delta)
         {
             var node = _trieMap.GetTrieNode(keyPrefix);
 
             if (node != null)
             {
                 UpdateNodeAndChildren(node, delta);
-                UpdateParents(keyPrefix);
+                UpdateParents(node);
             }
         }
 
@@ -258,7 +297,7 @@ namespace Voidex.Badge.Runtime
         /// <param name="keyPrefix">The prefix of the badge key.</param>
         /// <param name="postfix">The postfix to match at the end of the badge key.</param>
         /// <param name="delta">The amount to change the badge value by.</param>
-        public void UpdateBadges(string keyPrefix, string postfix, int delta)
+        public void UpdateBadgesCount(string keyPrefix, string postfix, int delta)
         {
             var node = _trieMap.GetTrieNode(keyPrefix);
             if (node == null) return;
@@ -266,8 +305,8 @@ namespace Voidex.Badge.Runtime
             var children = node.GetChildren();
             foreach (var child in children)
             {
-                UpdateNodeAndChildren(child, delta, trieNode => trieNode.Value.key.EndsWith(postfix));
-                UpdateParents(child.Value.key);
+                UpdateNodeAndChildren(child, delta, trieNode => trieNode.Path.EndsWith(postfix));
+                UpdateParents(child);
             }
         }
 
@@ -278,7 +317,7 @@ namespace Voidex.Badge.Runtime
         /// <param name="postfix"></param>
         /// <param name="delta"></param>
         /// <param name="value"></param>
-        public void UpdateBadges(string keyPrefix, string postfix, int delta, TValue value)
+        public void UpdateBadgesCount(string keyPrefix, string postfix, int delta, TValue value)
         {
             var node = _trieMap.GetTrieNode(keyPrefix);
             if (node == null) return;
@@ -286,9 +325,9 @@ namespace Voidex.Badge.Runtime
             var children = node.GetChildren();
             foreach (var child in children)
             {
-                UpdateNodeAndChildren(child, delta, value, trieNode => trieNode.Value.key.EndsWith(postfix));
+                UpdateNodeAndChildren(child, delta, value, trieNode => trieNode.Path.EndsWith(postfix));
                 //TODO do not update parents if the node is not updated to avoid unnecessary calculation
-                UpdateParents(child.Value.key);
+                UpdateParents(child);
             }
         }
 
@@ -298,7 +337,7 @@ namespace Voidex.Badge.Runtime
         /// <param name="keyPrefix"></param>
         /// <param name="delta"></param>
         /// <param name="condition"></param>
-        public void UpdateBadges(string keyPrefix, int delta, [NotNull] Func<TrieNode<BadgeData<TValue>>, bool> condition)
+        public void UpdateBadgesCount(string keyPrefix, int delta, [NotNull] Func<TrieNode<BadgeData<TValue>>, bool> condition)
         {
             var node = _trieMap.GetTrieNode(keyPrefix);
             if (node == null) return;
@@ -307,7 +346,7 @@ namespace Voidex.Badge.Runtime
             foreach (var child in children)
             {
                 UpdateNodeAndChildren(child, delta, condition);
-                UpdateParents(child.Value.key);
+                UpdateParents(child);
             }
         }
 
@@ -322,7 +361,7 @@ namespace Voidex.Badge.Runtime
             {
                 node.Value.badgeCount += delta;
             }
-            
+
             var hasChildren = node.HasChildren();
             if (hasChildren)
             {
@@ -342,7 +381,7 @@ namespace Voidex.Badge.Runtime
                 node.Value.badgeCount = sum;
             }
 
-            BadgeMessaging<TValue>.UpdateBadge(node.Value);
+            BadgeMessaging<TValue>.UpdateBadge(node.Path, node.Value);
         }
 
         private void UpdateNodeAndChildren(TrieNode<BadgeData<TValue>> node, int delta, TValue value, Func<TrieNode<BadgeData<TValue>>, bool> condition = null)
@@ -377,20 +416,13 @@ namespace Voidex.Badge.Runtime
                 node.Value.badgeCount = sum;
             }
 
-            BadgeMessaging<TValue>.UpdateBadge(node.Value);
+            BadgeMessaging<TValue>.UpdateBadge(node.Path, node.Value);
         }
 
-        private void UpdateParents(string key)
+        private void UpdateParents(TrieNode<BadgeData<TValue>> node)
         {
-            ReadOnlySpan<char> keySpan = key.AsSpan();
-            int lastIndex = keySpan.LastIndexOf(Const.SEPARATOR);
-            if (lastIndex == -1) return;
-
-            ReadOnlySpan<char> parentKeySpan = keySpan.Slice(0, lastIndex);
-
-            string parentKey = parentKeySpan.ToString();
-            var parent = _trieMap.GetTrieNode(parentKey);
-            if (parent != null)
+            var parent = node.Parent;
+            while (parent != null)
             {
                 int sum = 0;
                 foreach (var child in parent.GetChildren())
@@ -404,15 +436,24 @@ namespace Voidex.Badge.Runtime
                         sum += child.Value.badgeCount > 0 ? 1 : 0;
                     }
                 }
-                
+
+                //stop if the node is root
+                if (parent.Value == null)
+                {
+                    break;
+                }
+
                 parent.Value.badgeCount = sum;
+                BadgeMessaging<TValue>.UpdateBadge(parent.Path, parent.Value);
 
-                BadgeMessaging<TValue>.UpdateBadge(parent.Value);
-
-                // Recursively update the parents of the current node
-                // Convert the parent key span back to a string for recursive call
-                UpdateParents(parentKey);
+                parent = parent.Parent;
             }
+        }
+
+        private void UpdateLeafNode(TrieNode<BadgeData<TValue>> node, int delta)
+        {
+            node.Value.badgeCount += delta;
+            BadgeMessaging<TValue>.UpdateBadge(node.Path, node.Value);
         }
 
         /// <summary>
@@ -430,9 +471,37 @@ namespace Voidex.Badge.Runtime
             }
 
             node.Value.badgeCount = badgeCount;
-            BadgeMessaging<TValue>.UpdateBadge(node.Value);
+            BadgeMessaging<TValue>.UpdateBadge(node.Path, node.Value);
 
-            UpdateParents(key);
+            UpdateParents(node);
+
+            // var parent = node.Parent;
+            // while (parent != null)
+            // {
+            //     int sum = 0;
+            //     foreach (var child in parent.GetChildren())
+            //     {
+            //         if (child.Value.nodeType == NodeType.Multiple)
+            //         {
+            //             sum += child.Value.badgeCount;
+            //         }
+            //         else if (child.Value.nodeType == NodeType.Single)
+            //         {
+            //             sum += child.Value.badgeCount > 0 ? 1 : 0;
+            //         }
+            //     }
+            //
+            //     //stop if the node is root
+            //     if (parent.Value == null)
+            //     {
+            //         break;
+            //     }
+            //
+            //     parent.Value.badgeCount = sum;
+            //     BadgeMessaging<TValue>.UpdateBadge(parent.Path, parent.Value);
+            //     
+            //     parent = parent.Parent;
+            // }
         }
 
         /// <summary>
@@ -452,11 +521,11 @@ namespace Voidex.Badge.Runtime
 
             node.Value.badgeCount = badgeCount;
             node.Value.value = value;
-            BadgeMessaging<TValue>.UpdateBadge(node.Value);
+            BadgeMessaging<TValue>.UpdateBadge(node.Path, node.Value);
 
-            UpdateParents(key);
+            UpdateParents(node);
         }
-        
+
         /// <summary>
         /// Set badge custom value by key
         /// </summary>
@@ -470,9 +539,9 @@ namespace Voidex.Badge.Runtime
             {
                 throw new System.Exception($"Badge {key} not found");
             }
-            
+
             node.Value.value = value;
-            BadgeMessaging<TValue>.UpdateBadge(node.Value);
+            BadgeMessaging<TValue>.UpdateBadge(node.Path, node.Value);
         }
 
         private void SetNodeAndChildrenValue(TrieNode<BadgeData<TValue>> node, int count, TValue value, Func<TrieNode<BadgeData<TValue>>, bool> condition = null)
@@ -487,7 +556,7 @@ namespace Voidex.Badge.Runtime
                 node.Value.badgeCount = count;
                 node.Value.value = value;
             }
-            
+
             var hasChildren = node.HasChildren();
             if (hasChildren)
             {
@@ -507,16 +576,16 @@ namespace Voidex.Badge.Runtime
                 node.Value.badgeCount = sum;
             }
 
-            BadgeMessaging<TValue>.UpdateBadge(node.Value);
+            BadgeMessaging<TValue>.UpdateBadge(node.Path, node.Value);
         }
-        
+
         private void SetNodeAndChildrenValue(TrieNode<BadgeData<TValue>> node, Action<BadgeData<TValue>> modify, Func<TrieNode<BadgeData<TValue>>, bool> condition = null)
         {
             foreach (var child in node.GetChildren())
             {
                 SetNodeAndChildrenValue(child, modify, condition);
             }
-            
+
             if (condition == null || condition(node))
             {
                 modify(node.Value);
@@ -541,7 +610,7 @@ namespace Voidex.Badge.Runtime
                 node.Value.badgeCount = sum;
             }
 
-            BadgeMessaging<TValue>.UpdateBadge(node.Value);
+            BadgeMessaging<TValue>.UpdateBadge(node.Path, node.Value);
         }
 
         /// <summary>
@@ -559,8 +628,8 @@ namespace Voidex.Badge.Runtime
             var children = node.GetChildren();
             foreach (var child in children)
             {
-                SetNodeAndChildrenValue(child, count, value,trieNode => trieNode.Value.key.EndsWith(keyPostfix));
-                UpdateParents(child.Value.key);
+                SetNodeAndChildrenValue(child, count, value, trieNode => trieNode.Path.EndsWith(keyPostfix));
+                UpdateParents(child);
             }
         }
 
@@ -580,10 +649,10 @@ namespace Voidex.Badge.Runtime
             foreach (var child in children)
             {
                 SetNodeAndChildrenValue(child, count, value, condition);
-                UpdateParents(child.Value.key);
+                UpdateParents(child);
             }
         }
-        
+
         /// <summary>
         /// Sets the value for all the badges that have the specified key prefix, using the specified modify action to update the badge value, and the condition to be met for the badge to be updated.
         /// </summary>
@@ -599,7 +668,7 @@ namespace Voidex.Badge.Runtime
             foreach (var child in children)
             {
                 SetNodeAndChildrenValue(child, modify, condition);
-                UpdateParents(child.Value.key);
+                UpdateParents(child);
             }
         }
 
