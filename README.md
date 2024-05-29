@@ -23,7 +23,7 @@ Most of my test cases have passed, ensuring the reliability and robustness of my
 1. Open Package Manager from `Window > Package Manager`.
 2. Click the "+" button > `Add package from git URL`.
 3. Enter the following URL:
-   `https://github.com/felixngd/BadgeNotification.git?path=src/BadgeNotification/Packages/BadgeNotification`
+   `https://github.com/felixngd/BadgeNotification.git?path=Packages/BadgeNotification`
 
 **Method 2** Modify `Packages/manifest.json`
 
